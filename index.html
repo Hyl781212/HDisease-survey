@@ -230,7 +230,7 @@ input[type="text"],input[type="tel"],input[type="date"]{
     </div>
 
 <div class="sub-title">四、高危行为和危险因素</div>
-  <div class="small-sub">(一)吸毒史</div>
+    <div class="small-sub">(一)吸毒史</div>
 <div class="item">
     <span>有无吸毒史：</span>
         <div class="check-group check-equidistant">
@@ -411,76 +411,99 @@ input[type="text"],input[type="tel"],input[type="date"]{
 </div>
 
  <div class="small-sub">(三)受血/血制品史</div>
-    <div class="item">
-        <span>受血类别：</span>
-        <div class="check-group check-equidistant">
-            <label><input type="checkbox" id="bloodNone">无</label>
-            <label><input type="checkbox" class="bloodItem">全血</label>
-            <label><input type="checkbox" class="bloodItem">血浆</label>
-            <label><input type="checkbox" class="bloodItem">血液制品</label>
-        </div>
+<div class="item">
+    <span>受血类别：</span>
+    <div class="check-group check-equidistant">
+        <label><input type="checkbox" id="bloodNone">无</label>
+        <label><input type="checkbox" class="bloodItem">全血</label>
+        <label><input type="checkbox" class="bloodItem">血浆</label>
+        <label><input type="checkbox" class="bloodItem">血液制品</label>
     </div>
+</div>
 
-    <div id="bloodWrap" style="display:none;margin-left:24px;margin-top:8px;">
-        <div class="item">
-            <span>首次受血、血浆或血液制品时间：</span>
-            <input type="text" maxlength="10" placeholder="/年/月">
-            <span>地点：</span>
-            <input type="text" maxlength="20">
-        </div>
-        <div class="item">
-            <span>末次受血、血浆或血液制品时间：</span>
-            <input type="text" maxlength="10" placeholder="如：202606">
-            <span>地点：</span>
-            <input type="text" maxlength="20">
-        </div>
+<div id="bloodWrap" class="indent hide">
+    <div class="item">
+        <span>首次受血、血浆或血液制品时间：</span>
+        <input type="text" maxlength="10" placeholder="/年/月">
+        <span>地点：</span>
+        <input type="text" maxlength="20">
+    </div>
+    <div class="item">
+        <span>末次受血、血浆或血液制品时间：</span>
+        <input type="text" maxlength="10" placeholder="如：202606">
+        <span>地点：</span>
+        <input type="text" maxlength="20">
     </div>
 </div>
 
  <div class="small-sub">(四)供血(浆)史</div>
-    <div class="item">
-        <span>供全血或血浆史：</span>
-        <div class="check-group check-equidistant">
-            <label><input type="radio" name="supplyBlood" id="supplyYes">有</label>
-            <label><input type="radio" name="supplyBlood" id="supplyNo">没有</label>
-        </div>
-    </div>
-    <!--明细容器默认隐藏-->
-    <div id="supplyWrap" style="display:none;margin-left:24px;margin-top:8px;">
-        <div class="item">
-            <span>首次供全血时间：</span>
-            <input type="text" maxlength="4" placeholder="/年/月">
-            <span>地点：</span>
-            <input type="text" maxlength="10" placeholder="/">
-            <span>采血单位：</span>
-            <input type="text" maxlength="10" placeholder="/">
-        </div>
-        <div class="item">
-            <span>末次供全血时间：</span>
-            <input type="text" maxlength="4" placeholder="/年/月">
-            <span>地点：</span>
-            <input type="text" maxlength="10" placeholder="/">
-            <span>采血单位：</span>
-            <input type="text" maxlength="10" placeholder="/">
-        </div>
-        <div class="item">
-            <span>首次供血浆时间：</span>
-            <input type="text" maxlength="4" placeholder="/年/月">
-            <span>地点：</span>
-            <input type="text" maxlength="10" placeholder="/">
-            <span>采血单位：</span>
-            <input type="text" maxlength="10" placeholder="/">
-        </div>
-        <div class="item">
-            <span>末次供血浆时间：</span>
-            <input type="text" maxlength="4" placeholder="/年/月">
-            <span>地点：</span>
-            <input type="text" maxlength="10" placeholder="/">
-            <span>采血单位：</span>
-            <input type="text" maxlength="10" placeholder="/">
-        </div>
+<div class="item">
+    <span>供全血或血浆史：</span>
+    <div class="check-group check-equidistant">
+        <label><input type="radio" name="supplyBlood" id="supplyYes">有</label>
+        <label><input type="radio" name="supplyBlood" id="supplyNo">没有</label>
     </div>
 </div>
+
+<!-- 明细容器：用 style 直接写死初始隐藏 -->
+<div id="supplyWrap" style="display:none;margin-left:24px;margin-top:8px;">
+    <div class="item">
+        <span>首次供全血时间：</span>
+        <input type="text" maxlength="4" placeholder="/年/月">
+        <span>地点：</span>
+        <input type="text" maxlength="10" placeholder="/">
+        <span>采血单位：</span>
+        <input type="text" maxlength="10" placeholder="/">
+    </div>
+    <div class="item">
+        <span>末次供全血时间：</span>
+        <input type="text" maxlength="4" placeholder="/年/月">
+        <span>地点：</span>
+        <input type="text" maxlength="10" placeholder="/">
+        <span>采血单位：</span>
+        <input type="text" maxlength="10" placeholder="/">
+    </div>
+    <div class="item">
+        <span>首次供血浆时间：</span>
+        <input type="text" maxlength="4" placeholder="/年/月">
+        <span>地点：</span>
+        <input type="text" maxlength="10" placeholder="/">
+        <span>采血单位：</span>
+        <input type="text" maxlength="10" placeholder="/">
+    </div>
+    <div class="item">
+        <span>末次供血浆时间：</span>
+        <input type="text" maxlength="4" placeholder="/年/月">
+        <span>地点：</span>
+        <input type="text" maxlength="10" placeholder="/">
+        <span>采血单位：</span>
+        <input type="text" maxlength="10" placeholder="/">
+    </div>
+</div>
+
+<script>
+// 供血史联动逻辑（无依赖，直接控制 display）
+(function(){
+    const supplyYes = document.getElementById('supplyYes');
+    const supplyNo = document.getElementById('supplyNo');
+    const supplyWrap = document.getElementById('supplyWrap');
+
+    // 初始化：如果“有”被选中，直接显示
+    if (supplyYes.checked) {
+        supplyWrap.style.display = 'block';
+    }
+
+    // 勾选“有” → 显示
+    supplyYes.onchange = function(){
+        supplyWrap.style.display = 'block';
+    }
+
+    // 勾选“没有” → 隐藏
+    supplyNo.onchange = function(){
+        supplyWrap.style.display = 'none';
+    }
+})();
+</script>
 
     <div id="part5">
     <div class="small-sub">(五)生育史</div>
@@ -511,46 +534,69 @@ input[type="text"],input[type="tel"],input[type="date"]{
 </div>
 
  <div class="small-sub">(七)职业暴露</div>
+<div class="item">
+    <span>职业暴露：</span>
+    <div class="check-group check-equidistant">
+        <label><input type="radio" name="jobExpose" id="exYes">有</label>
+        <label><input type="radio" name="jobExpose" id="exNo">无</label>
+    </div>
+</div>
+
+<!-- 选“有”时展开的明细区域，默认隐藏 -->
+<div id="exWrap" style="display:none;margin-left:24px;margin-top:8px;">
+    <!-- 暴露发生于（多选） -->
     <div class="item">
-        <span>职业暴露：</span>
+        <span>暴露发生于：</span>
         <div class="check-group check-equidistant">
-            <label><input type="radio" name="jobExpose" id="exYes">有</label>
-            <label><input type="radio" name="jobExpose" id="exNo">无</label>
+            <label><input type="checkbox">临床治疗</label>
+            <label><input type="checkbox">手术</label>
+            <label><input type="checkbox">实验室检测</label>
+            <label><input type="checkbox">他人故意伤害</label>
+            <label><input type="checkbox">其他</label>
+            <input type="text" maxlength="8" placeholder="请注明">
         </div>
     </div>
-
-    <div id="exWrap" style="display:none;margin-left:24px;margin-top:8px;">
-        <!--暴露发生于（多选）-->
-        <div class="item">
-            <span>暴露发生于：</span>
-            <div class="check-group check-equidistant">
-                <label><input type="checkbox">临床治疗</label>
-                <label><input type="checkbox">手术</label>
-                <label><input type="checkbox">实验室检测</label>
-                <label><input type="checkbox">他人故意伤害</label>
-                <label><input type="checkbox">其他</label>
-                <input type="text" maxlength="8" placeholder="请注明">
-            </div>
+    <!-- 暴露级别（单选） -->
+    <div class="item">
+        <span>暴露级别：</span>
+        <div class="check-group check-equidistant">
+            <label><input type="radio" name="exLevel">1级暴露</label>
+            <label><input type="radio" name="exLevel">2级暴露</label>
+            <label><input type="radio" name="exLevel">3级暴露</label>
         </div>
-        <!--暴露级别（单选）-->
-        <div class="item">
-            <span>暴露级别：</span>
-            <div class="check-group check-equidistant">
-                <label><input type="radio" name="exLevel">1级暴露</label>
-                <label><input type="radio" name="exLevel">2级暴露</label>
-                <label><input type="radio" name="exLevel">3级暴露</label>
-            </div>
-        </div>
-        <!--紧急阻断用药（单选）-->
-        <div class="item">
-            <span>是否加抗病毒药物紧急阻断：</span>
-            <div class="check-group check-equidistant">
-                <label><input type="radio" name="blockDrug">是</label>
-                <label><input type="radio" name="blockDrug">否</label>
-            </div>
+    </div>
+    <!-- 是否紧急阻断（单选） -->
+    <div class="item">
+        <span>是否加抗病毒药物紧急阻断：</span>
+        <div class="check-group check-equidistant">
+            <label><input type="radio" name="blockDrug">是</label>
+            <label><input type="radio" name="blockDrug">否</label>
         </div>
     </div>
 </div>
+
+<script>
+(function(){
+    const exYes = document.getElementById('exYes');
+    const exNo = document.getElementById('exNo');
+    const exWrap = document.getElementById('exWrap');
+
+    // 初始化：页面加载时若“有”被选中，自动展开
+    if (exYes.checked) {
+        exWrap.style.display = 'block';
+    }
+
+    // 勾选“有” → 显示明细
+    exYes.onchange = function(){
+        exWrap.style.display = 'block';
+    }
+
+    // 勾选“无” → 隐藏明细，直接跳至(八)
+    exNo.onchange = function(){
+        exWrap.style.display = 'none';
+    }
+})();
+</script>
 
     <div id="babyItemWrap">
     <div class="small-sub">(八)患儿填写项</div>
@@ -934,13 +980,6 @@ input[type="text"],input[type="tel"],input[type="date"]{
         </div>
     </template>
 
-<div class="item" style="margin-top:15px;">
-    <span>调查人：</span>
-    <input type="text" maxlength="4">
-    <span style="margin-left:18px;">调查时间：</span>
-    <input type="date">
-</div>
-
 <script>
 const numInput = document.getElementById('contactNum');
 const wrapBox = document.getElementById('contactWrap');
@@ -1140,64 +1179,42 @@ preNo.addEventListener('change', () => {
 </script>
 <!-- 【在这里新开<script>粘贴受血史完整JS】 -->
 <script>
-//受血/血制品史全部JS代码
-window.onload = function(){
-    const bloodNone = document.getElementById('bloodNone');
-    const bloodItemList = document.querySelectorAll('.bloodItem');
-    const bloodWrap = document.getElementById('bloodWrap');
+// 受血/血制品史联动逻辑
+const bloodNone = document.getElementById('bloodNone');
+const bloodItemList = document.querySelectorAll('.bloodItem');
+const bloodWrap = document.getElementById('bloodWrap');
 
-    bloodNone.onchange = function(){
-        if(this.checked){
-            bloodWrap.style.display = 'none';
-            bloodItemList.forEach(item=>item.checked = false);
-        }else{
-            bloodWrap.style.display = 'block';
-        }
+// 【无】勾选框控制
+bloodNone.addEventListener('change', function() {
+    if (this.checked) {
+        // 勾选【无】时：隐藏明细 + 取消其他选项
+        bloodWrap.classList.add('hide');
+        bloodItemList.forEach(item => item.checked = false);
+    } else {
+        // 取消【无】时：自动展开明细
+        bloodWrap.classList.remove('hide');
     }
+});
 
-    bloodItemList.forEach(item=>{
-        item.onchange = function(){
-            let hasCheck = false;
-            bloodItemList.forEach(i=>{if(i.checked) hasCheck=true;})
-            if(hasCheck){
-                bloodNone.checked = false;
-                bloodWrap.style.display = 'block';
-            }else{
-                bloodWrap.style.display = 'none';
-            }
+// 其他选项（全血/血浆/血液制品）控制
+bloodItemList.forEach(item => {
+    item.addEventListener('change', function() {
+        // 检查是否勾选了任意一项
+        const hasSelected = Array.from(bloodItemList).some(i => i.checked);
+        if (hasSelected) {
+            // 勾选任意一项：取消【无】 + 展开明细
+            bloodNone.checked = false;
+            bloodWrap.classList.remove('hide');
+        } else {
+            // 全部取消：隐藏明细
+            bloodWrap.classList.add('hide');
         }
-    })
-}
+    });
+});
 </script>
+
 <script>
-window.onload = function(){
-    const supplyYes = document.getElementById('supplyYes');
-    const supplyNo = document.getElementById('supplyNo');
-    const supplyWrap = document.getElementById('supplyWrap');
-    if(supplyYes.checked){
-        supplyWrap.style.display = "block";
-    }
-    supplyYes.addEventListener('change',()=>{
-        supplyWrap.style.display = 'block';
-    })
-    supplyNo.addEventListener('change',()=>{
-        supplyWrap.style.display = 'none';
-    })
-}
-</script>
-<script>
-window.onload = function(){
-    const exYes = document.getElementById('exYes');
-    const exNo = document.getElementById('exNo');
-    const exWrap = document.getElementById('exWrap');
-    if(exYes.checked){
-        exWrap.style.display = 'block';
-    }
-    exYes.onchange = ()=> exWrap.style.display = "block";
-    exNo.onchange = ()=> exWrap.style.display = "none";
-}
-</script>
-<script>
+// 吸毒史联动逻辑
 window.onload = function(){
     const drugYes = document.getElementById('drugYes');
     const drugNo = document.getElementById('drugNo');
