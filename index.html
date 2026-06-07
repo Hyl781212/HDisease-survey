@@ -2,9 +2,21 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
+<!-- FileSaver 用于文件下载 -->
+<script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+<!-- SheetJS 用于Excel导出 -->
+<script src="https://cdn.bootcdn.net/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<!-- Docx.js 用于Word导出 -->
+<script src="https://cdn.jsdelivr.net/npm/docx@8.5.0/build/index.umd.min.js"></script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HIV/AIDS个案流行病学调查表</title>
 <style>
+/* 全局设置行间距为23磅 */
+body, .item, .sub-title, .sub-item-title, span, label, input {
+    line-height: 23pt !important;
+}
+
 *{box-sizing:border-box;margin:4px;padding:0;font-size:15px;}
 body{padding:20px;max-width:1280px;margin:0 auto;}
 .main-title{
@@ -44,6 +56,9 @@ input[type="text"],input[type="tel"],input[type="date"]{
 .indent{margin-left:26px;}
 .sp10{margin-left:10px;}
 .sp16{margin-left:16px;}
+.death-related.hide {
+    display: none !important;
+}
 </style>
 </head>
 <body>
@@ -63,15 +78,19 @@ input[type="text"],input[type="tel"],input[type="date"]{
         <input type="text" maxlength="12" id="parentName" placeholder="14岁及以下的患儿需填写">
     </div>
     <div class="item">
-        <span>身份证号：</span>
-        <input type="text" maxlength="20" id="idcard">
-        <span id="idInfo">性别：，出生日期：，年龄（岁）：</span>
-    </div>
+    <span>身份证号：</span>
+    <input type="text" maxlength="20" id="idcard" oninput="parseIdCard()">
+    <span id="idInfo">性别：<span id="genderText"></span>，出生日期：<span id="birthDateText"></span>，年龄（岁）：<span id="ageText"></span></span>
+    <!-- 隐藏的输入框，用于导出Excel -->
+    <input type="hidden" id="gender" value="">
+    <input type="hidden" id="birthDate" value="">
+    <input type="hidden" id="age" value="">
+</div>
     <div class="item">
         <span>工作单位/学校：</span>
         <input type="text" maxlength="30" id="workUnit" placeholder="民工/工人/教师/医务人员/干部职工/学生儿童">
         <span>联系电话：</span>
-        <input type="tel" maxlength="7" id="phone">
+        <input type="tel" maxlength="11" id="phone">
     </div>
     <div class="item">
         <span>病人属于<span class="red">*</span>：</span>
@@ -198,28 +217,29 @@ input[type="text"],input[type="tel"],input[type="date"]{
             <label><input type="radio" name="treatFlag" value="否">否</label>
         </div>
     </div>
-    <div class="item">
-        <span>死亡时病程阶段：</span>
-        <div class="check-group">
-            <label><input type="radio" name="deathStage" value="确诊的艾滋病病人">确诊的艾滋病病人</label>
-            <label><input type="radio" name="deathStage" value="HIV感染者(尚未发展为艾滋病)">HIV感染者(尚未发展为艾滋病)</label>
-        </div>
+    
+<div class="item">
+      <div class="item death-related hide" id="deathStageWrap" style="display: none !important;">
+    <span>死亡时病程阶段：</span>
+    <div class="check-group">
+        <label><input type="radio" name="deathStage" value="确诊的艾滋病病人">确诊的艾滋病病人</label>
+        <label><input type="radio" name="deathStage" value="HIV感染者(尚未发展为艾滋病)">HIV感染者(尚未发展为艾滋病)</label>
     </div>
-    <div class="item">
-        <span>主要死因：</span>
-        <div class="check-group">
-            <label><input type="radio" name="deathReason" value="AIDS">AIDS</label>
-            <label><input type="radio" name="deathReason" value="自杀">自杀</label>
-            <label><input type="radio" name="deathReason" value="吸毒过量">吸毒过量</label>
-            <label><input type="radio" name="deathReason" value="其他" id="reasonOtherCb">其他</label>
-        </div>
-        <input type="text" maxlength="16" id="otherReasonInput" class="hide" placeholder="(请注明)">
+</div>
+<!-- 主要死因 容器加 ID -->
+<div class="item death-related hide" id="deathReasonWrap" style="display: none !important;">
+    <span>主要死因：</span>
+    <div class="check-group">
+        <label><input type="radio" name="deathReason" value="AIDS">AIDS</label>
+        <label><input type="radio" name="deathReason" value="自杀">自杀</label>
+        <label><input type="radio" name="deathReason" value="吸毒过量">吸毒过量</label>
+        <label><input type="radio" name="deathReason" value="其他" id="reasonOtherCb">其他</label>
     </div>
+    <input type="text" maxlength="16" id="otherReasonInput" class="hide" placeholder="(请注明)">
+</div>
 
-   </div>
-
-    <div class="sub-title">三、诊断状态</div>
-    <div class="item">
+    <div class="sub-title" style="clear: both; display: block; width: 100%;">三、诊断状态</div>
+   <div class="item">
         <span>HIV确认阳性日期：</span>
         <input type="date" id="hivConfirmDate">
         <span>，HIV确认方法：WB</span>
@@ -229,8 +249,8 @@ input[type="text"],input[type="tel"],input[type="date"]{
         <input type="date" id="aidsDiagDate">
     </div>
 
-<div class="sub-title">四、高危行为和危险因素</div>
-    <div class="small-sub">(一)吸毒史</div>
+<div class="sub-title" style="clear: both; display: block; width: 100%;">四、高危行为和危险因素</div>
+   <div class="sub-item-title" style="clear: both; display: block; width: 100%;">(一)吸毒史</div>
 <div class="item">
     <span>有无吸毒史：</span>
         <div class="check-group check-equidistant">
@@ -282,9 +302,9 @@ input[type="text"],input[type="tel"],input[type="date"]{
     </div>
 </div>
 
-     <div class="small-sub">(二)性接触史</div>
+    <div class="sub-title" style="clear: both; display: block; width: 100%;">(二)性接触史</div>
 <div class="item">
-    <span>是否有性接触史：</span>
+    <div class="sub-item-title">有无性接触史：</span>
     <div class="check-group check-equidistant" data-single="sexAll" id="sexAllGroup">
         <label><input type="checkbox" name="sexAll" value="有" id="sexYes">有</label>
         <label><input type="checkbox" name="sexAll" value="无" id="sexNo">无</label>
@@ -410,7 +430,7 @@ input[type="text"],input[type="tel"],input[type="date"]{
     </div>
 </div>
 
- <div class="small-sub">(三)受血/血制品史</div>
+<div class="sub-title" style="clear: both; display: block; width: 100%;">(三)受血/血制品史</div>
 <div class="item">
     <span>受血类别：</span>
     <div class="check-group check-equidistant">
@@ -436,7 +456,7 @@ input[type="text"],input[type="tel"],input[type="date"]{
     </div>
 </div>
 
- <div class="small-sub">(四)供血(浆)史</div>
+ <div class="sub-title" style="clear: both; display: block; width: 100%;">(四)供血(浆)史</div>
 <div class="item">
     <span>供全血或血浆史：</span>
     <div class="check-group check-equidistant">
@@ -708,30 +728,40 @@ input[type="text"],input[type="tel"],input[type="date"]{
     <label><input type="radio" name="crowd" value="不详">不详</label>
 </div>
 
-<!--八、样本来源 -->
+<!-- 八、样本来源（单选版，含其他文本框联动） -->
 <div class="sub-title">八、样本来源<span class="red">*</span></div>
 <div class="check-group" id="sampleSource" data-single="sample">
-    <label><input type="checkbox" name="sample" value="术前">术前检查</label> 
-  <label><input type="checkbox" name="sample" value="受血">受血(制品)前检测</label>
- <label><input type="checkbox" name="sample" value="性病">性病门诊</label>
- <label><input type="checkbox" name="sample" value="其他">其他就诊者检测</label>
- <label><input type="checkbox" name="sample" value="婚前">婚前检查(含涉外婚姻)</label>
- <label><input type="checkbox" name="sample" value="孕产">孕产期检查</label>
- <label><input type="checkbox" name="sample" value="女性">女性阳性者子女检测</label>
- <label><input type="checkbox" name="sample" value="阳性">阳性者配偶或性伴检测</label>
- <label><input type="checkbox" name="sample" value="职业">职业暴露检测</label>
- <label><input type="checkbox" name="sample" value="娱乐">娱乐场所人员体检</label>
-<label><input type="checkbox" name="sample" value="有偿">有偿供血(浆)人员检测</label>
-<label><input type="checkbox" name="sample" value="无偿">无偿供血(浆)人员检测</label>
-<label><input type="checkbox" name="sample" value="出入">出入境人员体检</label>
-<label><input type="checkbox" name="sample" value="新兵">新兵体检</label>
-<label><input type="checkbox" name="sample" value="强制">强制/劳教人员检测</label>
-<label><input type="checkbox" name="sample" value="妇教">妇教所/女劳收教人员检测</label>
-<label><input type="checkbox" name="sample" value="其他">其他羁押人员体检</label>
-<label><input type="checkbox" name="sample" value="专题">专题调查</label>
-<label><input type="checkbox" name="sample" id="sampleOtherCheck" value="其他">其他</label>
-    <input type="text" maxlength="10" placeholder="(请注明)">
+    <label><input type="radio" name="sample" value="术前" required> 术前检查</label> 
+    <label><input type="radio" name="sample" value="受血"> 受血(制品)前检测</label>
+    <label><input type="radio" name="sample" value="性病"> 性病门诊</label>
+    <label><input type="radio" name="sample" value="其他"> 其他就诊者检测</label>
+    <label><input type="radio" name="sample" value="婚前"> 婚前检查(含涉外婚姻)</label>
+    <label><input type="radio" name="sample" value="孕产"> 孕产期检查</label>
+    <label><input type="radio" name="sample" value="女性"> 女性阳性者子女检测</label>
+    <label><input type="radio" name="sample" value="阳性"> 阳性者配偶或性伴检测</label>
+    <label><input type="radio" name="sample" value="职业"> 职业暴露检测</label>
+    <label><input type="radio" name="sample" value="娱乐"> 娱乐场所人员体检</label>
+    <label><input type="radio" name="sample" value="有偿"> 有偿供血(浆)人员检测</label>
+    <label><input type="radio" name="sample" value="无偿"> 无偿供血(浆)人员检测</label>
+    <label><input type="radio" name="sample" value="出入"> 出入境人员体检</label>
+    <label><input type="radio" name="sample" value="新兵"> 新兵体检</label>
+    <label><input type="radio" name="sample" value="强制"> 强制/劳教人员检测</label>
+    <label><input type="radio" name="sample" value="妇教"> 妇教所/女劳收教人员检测</label>
+    <label><input type="radio" name="sample" value="羁押"> 其他羁押人员体检</label>
+    <label><input type="radio" name="sample" value="专题"> 专题调查</label>
+    <label><input type="radio" name="sample" id="sampleOtherCheck" value="其他说明"> 其他</label>
+    <input type="text" maxlength="10" placeholder="(请注明)" id="sampleOtherInput" style="display: none;">
 </div>
+
+<script>
+// 样本来源「其他」选项联动：选“其他”时才显示文本框
+document.querySelectorAll('input[name="sample"]').forEach(radio => {
+    radio.addEventListener('change', function() {
+        const otherInput = document.getElementById('sampleOtherInput');
+        otherInput.style.display = this.id === 'sampleOtherCheck' ? 'inline-block' : 'none';
+    });
+});
+</script>
 
 <!--九、附卡调查内容 十、分子网络监测 新增内容-->
 <div class="sub-title">九、附卡调查内容</div>
@@ -782,7 +812,7 @@ input[type="text"],input[type="tel"],input[type="date"]{
 </div>
 
 <!--十、分子网络监测 行间距统一23px-->
-<div class="sub-title">十、分子网络监测</div>
+<div class="sub-title" style="clear: both; display: block; width: 100%;">十、分子网络监测</div>
 <div style="margin:10px 0 15px 0;line-height:23px;">
     <!--1.检测史-->
     <div style="margin:8px 0;">
@@ -790,11 +820,11 @@ input[type="text"],input[type="tel"],input[type="date"]{
         <div style="margin:6px 0 6px 12px;">
             <div style="margin:4px 0;">
                 <span>(1)在你诊断艾滋病感染前，是否检测过艾滋病抗体(不包括确证时的初筛)？</span>
-                <div class="check-equidistant" data-single="testHis1">
-                    <label><input type="checkbox" name="testHis1" value="no">没有</label>
-                    <label><input type="checkbox" name="testHis1" value="in12" id="chkIn12">12个月以内检测过</label>
-                    <label><input type="checkbox" name="testHis1" value="over12" id="chkOver12">12个月以前检测过</label>
-                </div>
+               <div class="check-equidistant" data-single="testHis1">
+                    <label><input type="radio" name="testHis1" value="no">没有</label>
+                    <label><input type="radio" name="testHis1" value="in12" id="chkIn12">12个月以内检测过</label>
+                    <label><input type="radio" name="testHis1" value="over12" id="chkOver12">12个月以前检测过</label>
+</div>
                 <!--检测结果：默认隐藏，选中12月内/12月前才显示-->
                 <div id="testResultWrap" class="check-equidistant" data-single="testResult" style="margin:4px 0 4px 20px;display:none;">
                     <span>检测结果：</span>
@@ -1232,3 +1262,715 @@ window.onload = function(){
 }
 </script>
 </div>
+
+<!-- 在这里插入：步骤2 导出按钮代码 -->
+<div style="margin-top: 40px; display: flex; gap: 20px; justify-content: center;">
+    <button id="exportExcel" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background: #4CAF50; color: white; border: none; border-radius: 4px;">导出Excel</button>
+    <button id="exportWord" style="padding: 10px 20px; font-size: 16px; cursor: pointer; background: #2196F3; color: white; border: none; border-radius: 4px;">导出Word</button>
+</div>
+
+<!-- 在这里插入：步骤3 导出功能JS代码 -->
+<script>
+// -------------------- 1. 表单数据采集函数（最终无错版） --------------------
+function collectFormData() {
+    const data = {
+        "报告编号": "",
+        "患者姓名": "",
+        "患儿家长姓名": "",
+        "身份证号": "",
+        "性别": "",
+        "出生日期": "",
+        "年龄(岁)": "",
+        "工作单位/学校": "",
+        "联系电话": "",
+        "病人属于": "",
+        "现住址": "",
+        "患者职业": "",
+        "患者职业(其他)": "",
+        "疾病名称": "",
+        "发病日期": "",
+        "诊断日期": "",
+        "死亡日期": "",
+        "婚姻状况": "",
+        "民族": "",
+        "文化程度": "",
+        "配偶/性伴的HIV感染状况": "",
+        "子女HIV感染状况": "",
+        "户籍地址": "",
+        "是否接受CD4检测": "",
+        "CD4检测时间": "",
+        "CD4检测结果(个/μL)": "",
+        "目前是否接受抗病毒治疗": "",
+        "死亡时病程阶段": "",
+        "主要死因": "",
+        "主要死因(其他)": "",
+        "HIV确认阳性日期": "",
+        "艾滋病确诊日期": "",
+        "有无吸毒史": "",
+        "是否有性接触史": "",
+        "最可能的感染途径": "",
+        "人群类别": "",
+        "临床表现": "",
+        "临床表现(其他)": "",
+        "样本来源": "",
+        "样本来源其他说明": "",
+        "接触史_注射毒品共用人数": "",
+        "接触史_注射毒品史": "",
+        "接触史_非婚异性接触人数": "",
+        "接触史_非婚异性接触史": "",
+        "接触史_商业异性性接触史": "",
+        "接触史_非商业异性性接触史": "",
+        "接触史_配偶固定性伴阳性": "",
+        "接触史_男男性行为人数": "",
+        "接触史_男男性行为史": "",
+        "接触史_献血浆史": "",
+        "接触史_输血血制品": "",
+        "接触史_母亲阳性": "",
+        "接触史_职业暴露史": "",
+        "接触史_手术史": "",
+        "接触史_不详": "",
+        "接触史_其他": "",
+        "接触史_其他说明": "",
+        "性病史": "",
+        "检测史_既往检测情况": "",
+        "检测史_检测结果": "",
+        "感染前1年是否住院": "",
+        "是否出现相关症状": "",
+        "近1年性伴数量": "",
+        "性伴是否阳性": "",
+        "有无固定性伴": "",
+        "是否使用抗病毒药物": "",
+        "蛋白酶类药物": "",
+        "核苷类药物": "",
+        "整合酶类药物": "",
+        "非核苷类药物": "",
+        "其他类药物": "",
+        "是否接受药物预防": "",
+        "预防药物名称": "",
+        "自觉感染时间": "",
+        "自觉感染地点": "",
+        "高危接触人数": ""
+    };
+
+    try {
+        // 1. 基本信息（修复报告编号前缀问题）
+        const rawReportNo = (document.getElementById('reportNoStr')?.textContent || '') + (document.getElementById('seqInput')?.value || '');
+        data["报告编号"] = rawReportNo.replace(/^.*?:\s*/, '');
+        data["患者姓名"] = document.getElementById('name')?.value || '';
+        data["患儿家长姓名"] = document.getElementById('parentName')?.value || '';
+        data["身份证号"] = document.getElementById('idcard')?.value || '';
+        // 身份证解析字段
+        data["性别"] = document.getElementById('gender')?.value || '';
+        data["出生日期"] = document.getElementById('birthDate')?.value || '';
+        data["年龄(岁)"] = document.getElementById('age')?.value || '';
+
+        data["工作单位/学校"] = document.getElementById('workUnit')?.value || '';
+        data["联系电话"] = document.getElementById('phone')?.value || '';
+        
+        // 单选/复选框通用方法
+        const getRadioValue = (name) => {
+            const checked = document.querySelector(`input[name="${name}"]:checked`);
+            return checked ? checked.value : '';
+        };
+        const getCheckboxValues = (name) => {
+            const checked = Array.from(document.querySelectorAll(`input[name="${name}"]:checked`));
+            return checked.map(item => item.value).join('、');
+        };
+
+        data["病人属于"] = getRadioValue('belong');
+        data["现住址"] = document.querySelector('input[placeholder="*省*市*县(区)*乡(镇、街道)*村*(门牌号)"]')?.value || '';
+        data["患者职业"] = getRadioValue('job');
+        if (data["患者职业"] === "其他") {
+            data["患者职业(其他)"] = document.getElementById('jobOtherTxt')?.value || '';
+        }
+        data["疾病名称"] = getRadioValue('disease');
+        data["发病日期"] = document.getElementById('onsetDate')?.value || '';
+        data["诊断日期"] = document.getElementById('diagDate')?.value || '';
+        data["死亡日期"] = document.getElementById('deadDate')?.value || '';
+
+        // 2. 扩展基本信息
+        data["婚姻状况"] = getRadioValue('marriage');
+        data["民族"] = document.querySelector('input[placeholder="填写民族"]')?.value || '';
+        data["文化程度"] = getRadioValue('edu');
+        data["配偶/性伴的HIV感染状况"] = getRadioValue('partnerHiv');
+        data["子女HIV感染状况"] = getRadioValue('childHiv');
+        data["户籍地址"] = document.querySelector('input[placeholder="*省*市*县(区)*乡(镇、街道)*村*(门牌号)"]')?.value || '';
+        
+        // CD4检测相关
+        data["是否接受CD4检测"] = getRadioValue('cd4Flag');
+        if (data["是否接受CD4检测"] === "是") {
+            data["CD4检测时间"] = document.getElementById('cd4Time')?.value || '';
+            data["CD4检测结果(个/μL)"] = document.getElementById('cd4Result')?.value || '';
+        }
+        data["目前是否接受抗病毒治疗"] = getRadioValue('treatFlag');
+        data["死亡时病程阶段"] = getRadioValue('deathStage');
+        data["主要死因"] = getRadioValue('deathReason');
+        if (data["主要死因"] === "其他") {
+            data["主要死因(其他)"] = document.getElementById('otherReasonInput')?.value || '';
+        }
+
+        // 3. 诊断状态
+        data["HIV确认阳性日期"] = document.getElementById('hivConfirmDate')?.value || '';
+        data["艾滋病确诊日期"] = document.getElementById('aidsDiagDate')?.value || '';
+
+        // 4. 高危行为和危险因素
+        data["有无吸毒史"] = getRadioValue('drugHistory');
+        data["是否有性接触史"] = getRadioValue('sexAll');
+        data["最可能的感染途径"] = getRadioValue('infect');
+        data["人群类别"] = getRadioValue('crowd');
+
+        // 5. 临床表现
+        data["临床表现"] = getCheckboxValues('symptom');
+        const symptomOtherChecked = document.querySelector('input[name="symptomOther"]:checked');
+        if (symptomOtherChecked) {
+            data["临床表现(其他)"] = document.getElementById('symptomOtherTxt')?.value || '';
+        }
+
+        // 6. 样本来源 单选取值
+        const sampleRadio = document.querySelector('input[name="sample"]:checked');
+        if(sampleRadio){
+            data["样本来源"] = sampleRadio.value;
+            if(sampleRadio.id === 'sampleOtherCheck'){
+                data["样本来源其他说明"] = document.getElementById('sampleOtherInput')?.value || '';
+            }
+        }
+
+        // 7. 九、附卡调查内容
+       // 7.1 接触史 所有复选 + 内嵌文本框
+       let drugInjectCb = document.querySelector('.check-group label:nth-child(1) input[type="checkbox"]');
+       let drugInjectNum = document.querySelector('.check-group label:nth-child(1) input[type="text"]');
+
+       // ✅ 复选框：未勾选时留空，勾选时写“是”
+       data["接触史_注射毒品史"] = drugInjectCb?.checked ? "是" : "";
+       // 文本框：直接取value，空值保留空白
+       data["接触史_注射毒品共用人数"] = drugInjectNum?.value || "";
+
+        let heteroCb = document.querySelector('label:nth-of-type(2) input[type="checkbox"]');
+        let heteroNum = document.querySelector('label:nth-of-type(2) input[type="text"]');
+        data["接触史_非婚异性接触史"] = heteroCb?.checked ? "是" : "";
+        data["接触史_非婚异性接触人数"] = heteroNum?.value || "";
+
+        let businessSexCb = document.querySelector('label:nth-of-type(3) input[type="checkbox"]');
+        data["接触史_商业异性性接触史"] = businessSexCb?.checked ? "是" : "";
+
+        let unBusinessSexCb = document.querySelector('label:nth-of-type(4) input[type="checkbox"]');
+        data["接触史_非商业异性性接触史"] = unBusinessSexCb?.checked ? "是" : "";
+
+        let partnerPositiveCb = document.querySelector('label:nth-of-type(5) input[type="checkbox"]');
+        data["接触史_配偶固定性伴阳性"] = partnerPositiveCb?.checked ? "是" : "";
+
+        let homoSexCb = document.querySelector('label:nth-of-type(6) input[type="checkbox"]');
+        let homoSexNum = document.querySelector('label:nth-of-type(6) input[type="text"]');
+        data["接触史_男男性行为史"] = homoSexCb?.checked ? "是" : "";
+        data["接触史_男男性行为人数"] = homoSexNum?.value || "";
+
+        let bloodDonateCb = document.querySelector('label:nth-of-type(7) input[type="checkbox"]');
+        data["接触史_献血浆史"] = bloodDonateCb?.checked ? "是" : "";
+
+        let bloodTransCb = document.querySelector('label:nth-of-type(8) input[type="checkbox"]');
+        data["接触史_输血血制品"] = bloodTransCb?.checked ? "是" : "";
+
+        let motherPositiveCb = document.querySelector('label:nth-of-type(9) input[type="checkbox"]');
+        data["接触史_母亲阳性"] = motherPositiveCb?.checked ? "是" : "";
+
+        let exposeCb = document.querySelector('label:nth-of-type(10) input[type="checkbox"]');
+        data["接触史_职业暴露史"] = exposeCb?.checked ? "是" : "";
+
+        let operationCb = document.querySelector('label:nth-of-type(11) input[type="checkbox"]');
+        data["接触史_手术史"] = operationCb?.checked ? "是" : "";
+
+        let unknownCb = document.querySelector('label:nth-of-type(12) input[type="checkbox"]');
+        data["接触史_不详"] = unknownCb?.checked ? "是" : "";
+
+        let fkOtherCb = document.getElementById('fkOtherCb');
+        let fkOtherInp = document.getElementById('fkOtherInp');
+        data["接触史_其他"] = fkOtherCb?.checked ? "是" : "";
+        data["接触史_其他说明"] = fkOtherInp?.value || "";
+
+        // 7.2 性病史
+        data["性病史"] = getRadioValue('fkXb');
+
+        // 8. 十、分子网络监测
+        data["检测史_既往检测情况"] = getRadioValue('testHis1');
+        data["检测史_检测结果"] = getRadioValue('testResult');
+        data["感染前1年是否住院"] = getRadioValue('beforeHosp');
+        data["是否出现相关症状"] = getRadioValue('zz');
+        data["近1年性伴数量"] = getRadioValue('xbNum');
+        data["性伴是否阳性"] = getRadioValue('xbPos');
+        data["有无固定性伴"] = getRadioValue('fixXb');
+
+        const drugUseList = document.querySelectorAll('input[name="drugUse"]:checked');
+        let drugArr = [];
+        drugUseList.forEach(item => drugArr.push(item.value));
+        data["是否使用抗病毒药物"] = drugArr.join('、');
+
+        let drugInputs = document.querySelectorAll('.check-equidistant input[type="text"]');
+        if(drugInputs[0]) data["蛋白酶类药物"] = drugInputs[0].value || "";
+        if(drugInputs[1]) data["核苷类药物"] = drugInputs[1].value || "";
+        if(drugInputs[2]) data["整合酶类药物"] = drugInputs[2].value || "";
+        if(drugInputs[3]) data["非核苷类药物"] = drugInputs[3].value || "";
+        if(drugInputs[4]) data["其他类药物"] = drugInputs[4].value || "";
+
+        data["是否接受药物预防"] = getRadioValue('preDrug');
+        data["预防药物名称"] = document.getElementById('preDrugInp')?.value || "";
+        data["自觉感染时间"] = getRadioValue('infTime');
+        data["自觉感染地点"] = getRadioValue('infAddr');
+
+        // 9. 十一、高危行为接触者
+        const contactNum = parseInt(document.getElementById('contactNum')?.value) || 0;
+        data["高危接触人数"] = contactNum;
+
+        const contactItems = document.querySelectorAll('#contactWrap > div');
+        contactItems.forEach((item, idx) => {
+            let i = idx + 1;
+            let linkRadio = item.querySelector(`input[name="link_${i}"]:checked`);
+            data[`接触者${i}_接触方式`] = linkRadio?.value || "";
+
+            data[`接触者${i}_姓名`] = item.querySelector('.inp_name')?.value || "";
+            data[`接触者${i}_性别`] = item.querySelector('.inp_sex')?.value || "";
+            data[`接触者${i}_年龄`] = item.querySelector('.inp_age')?.value || "";
+            data[`接触者${i}_联系电话`] = item.querySelector('.inp_tel')?.value || "";
+            data[`接触者${i}_社交帐号`] = item.querySelector('.inp_social')?.value || "";
+
+            let locInputs = item.querySelectorAll('input[maxlength="30"]');
+            data[`接触者${i}_居住地点`] = locInputs[0]?.value || "";
+            data[`接触者${i}_暴露地点`] = locInputs[1]?.value || "";
+            data[`接触者${i}_高危时间`] = item.querySelector('input[type="date"]')?.value || "";
+
+            let tellRadio = item.querySelector(`input[name="tell_${i}"]:checked`);
+            data[`接触者${i}_告知方式`] = tellRadio?.value || "";
+            data[`接触者${i}_授权说明`] = item.querySelector('.inp_auth')?.value || "";
+
+            let resultRadio = item.querySelector(`input[name="result_${i}"]:checked`);
+            data[`接触者${i}_追踪结局`] = resultRadio?.value || "";
+            data[`接触者${i}_阳性备注`] = item.querySelector('.inp_pos')?.value || "";
+        });
+
+        return data;
+    } catch (error) {
+        console.error("数据收集出错：", error);
+        alert("数据收集异常：" + error.message);
+        return data;
+    }
+}
+
+// -------------------- Excel导出功能 --------------------
+document.getElementById('exportExcel').onclick = function() {
+    alert("开始导出");
+    try {
+        const formData = collectFormData();
+        const headers = Object.keys(formData);
+        const row = headers.map(k => formData[k]);
+        const ws = XLSX.utils.aoa_to_sheet([headers, row]);
+
+        // 自动列宽
+        ws['!cols'] = headers.map((h,i)=>{
+            let len = Math.max(h.length, (row[i]||'').length) + 2;
+            return {wch: Math.min(len,30)};
+        });
+
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, "个案表");
+        XLSX.writeFile(wb, "HIV个案调查表.xlsx");
+        alert("导出成功！");
+    } catch (e) {
+        console.error("导出失败：", e);
+        alert("导出失败：" + e.message);
+    }
+};
+
+// ---------------------- Word导出功能 ----------------------
+document.getElementById('exportWord').addEventListener('click', async () => {
+    const formData = collectFormData();
+    const { Document, Paragraph, TextRun, Packer } = window.docx;
+
+    // 创建Word文档实例
+    const doc = new Document({
+        sections: [{
+            properties: {},
+            children: [
+                // 标题
+                new Paragraph({
+                    children: [
+                        new TextRun({
+                            text: "HIV/AIDS个案流行病学调查导出数据",
+                            bold: true,
+                            fontSize: 20,
+                        })
+                    ],
+                    alignment: "center",
+                    spacing: { after: 300 }
+                }),
+                // 表单数据
+                ...Object.entries(formData).map(([key, value]) => {
+                    return new Paragraph({
+                        children: [
+                            new TextRun({
+                                text: `${key}：`,
+                                bold: true,
+                                fontSize: 14,
+                            }),
+                            new TextRun({
+                                text: value,
+                                fontSize: 14,
+                            })
+                        ],
+                        spacing: { after: 100 }
+                    });
+                })
+            ]
+        }]
+    });
+
+    // 生成Word文件并下载
+    const blob = await Packer.toBlob(doc);
+    saveAs(blob, `HIV/AIDS调查表_${new Date().toLocaleDateString()}.docx`);
+});
+
+// ↓↓↓ 在这里添加新的控制死亡日期的JS代码 ↓↓↓
+// 监听死亡日期输入框，控制死亡相关模块的显示/隐藏
+(function() {
+    const deadDateInput = document.getElementById('deadDate');
+    const deathItems = document.querySelectorAll('.death-related');
+
+    function updateDisplay() {
+        if (!deadDateInput.value) {
+            // 死亡日期为空：强制隐藏
+            deathItems.forEach(el => {
+                el.style.display = 'none !important';
+            });
+        } else {
+            // 死亡日期填写：清空display，恢复原布局
+            deathItems.forEach(el => {
+                el.style.display = '';
+            });
+        }
+    }
+
+    deadDateInput.addEventListener('change', updateDisplay);
+    deadDateInput.addEventListener('input', updateDisplay);
+    window.addEventListener('load', updateDisplay);
+})();
+
+// 身份证号自动解析：性别、出生日期、年龄
+function parseIdCard() {
+    const idCardInput = document.getElementById('idcard');
+    const genderText = document.getElementById('genderText');
+    const birthDateText = document.getElementById('birthDateText');
+    const ageText = document.getElementById('ageText');
+    const genderInput = document.getElementById('gender');
+    const birthDateInput = document.getElementById('birthDate');
+    const ageInput = document.getElementById('age');
+
+    // 清空之前的数据
+    if(genderText) genderText.textContent = '';
+    if(birthDateText) birthDateText.textContent = '';
+    if(ageText) ageText.textContent = '';
+    if(genderInput) genderInput.value = '';
+    if(birthDateInput) birthDateInput.value = '';
+    if(ageInput) ageInput.value = '';
+
+    const idCard = idCardInput.value.trim();
+    if (idCard.length !== 18) return; // 只处理18位身份证
+
+    try {
+        // 1. 解析出生日期（第7-14位：YYYYMMDD）
+        const birthStr = idCard.substring(6, 14);
+        const year = birthStr.substring(0, 4);
+        const month = birthStr.substring(4, 6);
+        const day = birthStr.substring(6, 8);
+        const birthDate = `${year}-${month}-${day}`;
+        
+        if(birthDateText) birthDateText.textContent = birthDate;
+        if(birthDateInput) birthDateInput.value = birthDate;
+
+        // 2. 解析性别（第17位：奇数男，偶数女）
+        const genderCode = parseInt(idCard.charAt(16));
+        const gender = genderCode % 2 === 1 ? '男' : '女';
+        
+        if(genderText) genderText.textContent = gender;
+        if(genderInput) genderInput.value = gender;
+
+        // 3. 计算年龄
+        const birthDateObj = new Date(`${year}-${month}-${day}`);
+        const today = new Date();
+        let age = today.getFullYear() - birthDateObj.getFullYear();
+        const monthDiff = today.getMonth() - birthDateObj.getMonth();
+        if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDateObj.getDate())) {
+            age--;
+        }
+        
+        if(ageText) ageText.textContent = age;
+        if(ageInput) ageInput.value = age;
+    } catch (error) {
+        console.error("身份证解析出错：", error);
+    }
+}
+
+// 绑定触发事件：输入身份证时自动解析
+document.getElementById('idcard').addEventListener('input', parseIdCard);
+
+// ===================== 1. 本地存储单条保存功能 =====================
+// 保存当前表单数据到localStorage
+function saveCurrentRecord() {
+    const data = collectFormData();
+    if (!data["报告编号"]) {
+        alert("报告编号不能为空！");
+        return;
+    }
+    // 获取已有记录列表
+    let records = JSON.parse(localStorage.getItem("hivRecords") || "[]");
+    // 检查是否已存在该报告编号，存在则更新
+    const existingIndex = records.findIndex(r => r["报告编号"] === data["报告编号"]);
+    if (existingIndex >= 0) {
+        records[existingIndex] = data;
+        alert("记录已更新！");
+    } else {
+        records.push(data);
+        alert("记录已保存！");
+    }
+    localStorage.setItem("hivRecords", JSON.stringify(records));
+}
+
+// 加载指定报告编号的记录到表单
+function loadRecord(rec) {
+    // 1. 文本框赋值
+    for (const key in rec) {
+        const el = document.querySelector(`[name="${key}"]`) || document.getElementById(key);
+        if (el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA")) {
+            el.value = rec[key];
+        }
+    }
+    // 2. 单选框赋值
+    document.querySelectorAll("input[type='radio']").forEach(radio => {
+        radio.checked = (radio.parentElement.textContent.trim() === rec[radio.name]);
+    });
+    // 3. 联动逻辑触发（如吸毒史展开）
+    document.querySelectorAll("input[type='radio']:checked").forEach(radio => {
+        radio.dispatchEvent(new Event("change"));
+    });
+    alert("记录已加载！");
+}
+
+// ===================== 2. 查看历史记录功能 =====================
+function showHistoryModal() {
+    const records = JSON.parse(localStorage.getItem("hivRecords") || "[]");
+    if (records.length === 0) {
+        alert("暂无历史记录！");
+        return;
+    }
+    // 先清除旧弹窗，防止叠加
+    const oldModal = document.getElementById("historyModal");
+    if (oldModal) oldModal.remove();
+
+    const modal = document.createElement("div");
+    modal.id = "historyModal";
+    modal.style.cssText = `
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5);
+        display: flex; align-items: center; justify-content: center; z-index: 9999;
+    `;
+    let htmlStr = "";
+    records.forEach((rec, index) => {
+        let no = rec["报告编号"] || "";
+        let name = rec["患者姓名"] || "未填写";
+        htmlStr += `
+        <tr>
+            <td style="border:1px solid #ddd; padding: 8px;">${no}</td>
+            <td style="border:1px solid #ddd; padding: 8px;">${name}</td>
+            <td style="border:1px solid #ddd; padding: 8px;">
+                <button onclick="loadData(${index})">加载</button>
+                <button onclick="delRecord('${no}')">删除</button>
+            </td>
+        </tr>`;
+    });
+
+    modal.innerHTML = `
+        <div style="background: white; padding: 20px; border-radius: 8px; width: 90%; max-width: 600px; max-height: 80vh; overflow-y: auto;">
+            <h3>历史记录列表</h3>
+            <table style="width:100%; border-collapse: collapse; margin: 15px 0;">
+                <thead>
+                    <tr style="background: #f5f5f5;">
+                        <th style="border:1px solid #ddd; padding: 8px; text-align:left;">报告编号</th>
+                        <th style="border:1px solid #ddd; padding: 8px; text-align:left;">患者姓名</th>
+                        <th style="border:1px solid #ddd; padding: 8px; text-align:left;">操作</th>
+                    </tr>
+                </thead>
+                <tbody>${htmlStr}</tbody>
+            </table>
+            <button onclick="closeHistoryModal();">关闭</button>
+        </div>
+    `;
+    document.body.appendChild(modal);
+}
+
+// 关闭历史弹窗
+function closeHistoryModal() {
+    const modal = document.getElementById("historyModal");
+    if (modal) modal.remove();
+}
+
+// 加载数据到表单（统一入口）
+function loadData(index) {
+    const records = JSON.parse(localStorage.getItem("hivRecords") || "[]");
+    const rec = records[index];
+    if (!rec) {
+        alert("❌ 找不到这条记录！");
+        return;
+    }
+    // 调用回填函数
+    fillForm(rec);
+    // 加载后自动关闭弹窗
+    closeHistoryModal();
+    alert("✅ 记录已加载到表单！");
+}
+
+// 删除单条记录
+function delRecord(reportNo) {
+    let records = JSON.parse(localStorage.getItem("hivRecords") || "[]");
+    records = records.filter(r => r["报告编号"] !== reportNo);
+    localStorage.setItem("hivRecords", JSON.stringify(records));
+    alert("记录已删除！");
+    closeHistoryModal();
+    showHistoryModal();
+}
+
+// ===================== 表单回填函数（稳定版，必须保留） =====================
+function fillForm(rec) {
+    if (!rec) return;
+
+    // 遍历所有带name的控件，赋值
+    document.querySelectorAll("[name]").forEach(el => {
+        const key = el.name;
+        if (el.type !== "radio") {
+            // 文本框、文本域、下拉框
+            if (rec[key] !== undefined) {
+                el.value = rec[key];
+            }
+        } else {
+            // 单选框按value匹配
+            el.checked = (el.value === rec[key]);
+        }
+    });
+
+    // 触发联动逻辑
+    document.querySelectorAll("input[type='radio']:checked").forEach(radio => {
+        radio.dispatchEvent(new Event("change"));
+    });
+}
+
+// 一键清除表单（完整无BUG版）
+function clearForm() {
+    document.querySelectorAll('input[type="text"], input[type="number"], textarea, select').forEach(el => {
+        el.value = "";
+    });
+    document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => {
+        el.checked = false;
+    });
+    document.querySelectorAll('input[type="radio"], input[type="checkbox"]').forEach(el => {
+        el.dispatchEvent(new Event("change"));
+    });
+    alert("✅ 表单已清空！");
+}
+
+// 绑定清除按钮事件（加到你现有的 DOMContentLoaded 事件里）
+document.addEventListener("DOMContentLoaded", function(){
+    document.getElementById("saveRecord").addEventListener("click", saveCurrentRecord);
+    document.getElementById("viewHistory").addEventListener("click", showHistoryModal);
+    if(document.getElementById("exportExcel")){
+        document.getElementById("exportExcel").addEventListener("click", exportToExcel);
+    }
+    if(document.getElementById("exportWord")){
+        document.getElementById("exportWord").addEventListener("click", exportToWord);
+    }
+    // 新增清除按钮绑定
+    document.getElementById("clearForm").addEventListener("click", clearForm);
+});
+
+// ===================== 3. 导入Excel功能（兼容版 + 导入后自动回填表单） =====================
+function importExcelData(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, { type: "array" });
+            const sheetName = workbook.SheetNames[0];
+            const sheet = workbook.Sheets[sheetName];
+            const excelData = XLSX.utils.sheet_to_json(sheet);
+
+            if (excelData.length === 0) {
+                alert("❌ Excel文件为空！");
+                return;
+            }
+
+            let records = JSON.parse(localStorage.getItem("hivRecords") || "[]");
+            let count = 0;
+
+            excelData.forEach(row => {
+                const reportNo = row["报告编号"] || row["编号"] || row["病案号"];
+                if (reportNo) {
+                    const existingIndex = records.findIndex(r => r["报告编号"] === reportNo);
+                    if (existingIndex >= 0) {
+                        records[existingIndex] = row;
+                    } else {
+                        records.push(row);
+                    }
+                    count++;
+                }
+            });
+
+            localStorage.setItem("hivRecords", JSON.stringify(records));
+
+            if (count > 0) {
+                alert(`✅ 导入成功！共处理 ${count} 条有效记录！`);
+                // 导入后自动填充第一条
+                fillForm(excelData[0]);
+            } else {
+                alert("⚠️ 没有可导入的有效记录！\n请检查Excel表头是否包含「报告编号/编号/病案号」，且对应单元格不为空。");
+            }
+        } catch (error) {
+            alert(`❌ 导入失败：${error.message}\n请检查文件格式是否为.xlsx/.xls。`);
+        } finally {
+            event.target.value = "";
+        }
+    };
+    reader.readAsArrayBuffer(file);
+}
+
+// 页面加载完成再绑定按钮事件（解决按钮点不动）
+document.addEventListener("DOMContentLoaded", function(){
+    document.getElementById("saveRecord").addEventListener("click", saveCurrentRecord);
+    document.getElementById("viewHistory").addEventListener("click", showHistoryModal);
+    if(document.getElementById("exportExcel")){
+        document.getElementById("exportExcel").addEventListener("click", exportToExcel);
+    }
+    if(document.getElementById("exportWord")){
+        document.getElementById("exportWord").addEventListener("click", exportToWord);
+    }
+    // 【这一行必须加上，否则按钮点了没反应】
+    document.getElementById("clearForm").addEventListener("click", clearForm);
+});
+</script>
+
+<div style="margin-top: 40px; display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+    <!-- 导出按钮 -->
+    <button id="exportExcel">导出Excel</button>
+    <button id="exportWord">导出Word</button>
+    <!-- 新增清除按钮（红色样式更醒目） -->
+    <button onclick="clearForm()" style="background:#dc3545; color:white; border:none; padding:10px 20px; font-size:16px; cursor:pointer; border-radius:4px;">清除表单</button>
+
+    <!-- 新增功能按钮 -->
+    <button id="saveRecord">保存记录</button>
+    <button id="viewHistory">查看历史</button>
+
+<!-- 导入Excel按钮 -->
+<label style="padding: 10px 20px; font-size: 16px; cursor: pointer; background: #FF9880;">
+    导入Excel
+    <input type="file" accept=".xlsx,.xls" onchange="importExcelData(event)" style="display: none;">
+</label>
+</div>
+
+</body>
+</html>
