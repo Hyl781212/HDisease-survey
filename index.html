@@ -192,13 +192,14 @@
     <button id="btnClear">清除界面</button>
 </div>
 
-    <h1>HIV/AIDS 流行病学个案调查表</h1>
+  <h1>HIV/AIDS 流行病学个案调查表</h1>
 <!-- 被调查人输入框 放在1.基本情况前面 -->
 <div class="row" style="align-items:center;gap:30px;margin-bottom:16px;">
     <h2 style="margin:0;">1. 基本情况</h2>
     <div style="display:flex;align-items:center;gap:8px;">
         <label class="bold-text">被调查人：</label>
-        <input type="text" id="investigateeName" maxlength="6" placeholder="请输入姓名" style="width:260px;padding:3px 6px;border:1px solid #666;">
+        <!-- 新增 name="investigateeName" -->
+        <input type="text" id="investigateeName" name="investigateeName" maxlength="6" placeholder="请输入姓名" style="width:260px;padding:3px 6px;border:1px solid #666;">
     </div>
 </div>
 
@@ -690,7 +691,51 @@
         </div>
     </div>
 
-   <h2>7 高危行为接触者</h2>
+<h2>7 高危行为接触者</h2>
+<!-- 新增和8模块相同的边框容器 class="block" -->
+<div class="block">
+    <div class="row" style="align-items:center;gap:12px;flex-wrap:wrap;">
+        <label>姓名：</label>
+        <input type="text" name="partnerName" maxlength="4" value="/">
+
+        <label>性别：</label>
+        <select name="partnerSex">
+            <option value="">请选择</option>
+            <option value="男">男</option>
+            <option value="女">女</option>
+        </select>
+
+        <label>年龄(岁)：</label>
+        <input type="text" name="partnerAge" maxlength="3">
+
+        <label>接触方式：</label>
+        <select name="partnerContactType">
+            <option value="">请选择</option>
+            <option value="配偶">配偶</option>
+            <option value="异性固定">异性固定</option>
+            <option value="异性临时">异性临时</option>
+            <option value="异性商业">异性商业</option>
+            <option value="男同固定">男同固定</option>
+            <option value="男同临时">男同临时</option>
+            <option value="男同商业">男同商业</option>
+            <option value="共用针具吸毒">共用针具吸毒</option>
+        </select>
+
+        <label>居住地：</label>
+        <input type="text" name="partnerAddr" maxlength="10">
+
+        <label>暴露地：</label>
+        <input type="text" name="partnerExposePlace" maxlength="10">
+    </div>
+    <div class="row">
+        <label>末次高危行为时间：</label>
+        <input type="text" name="partnerLastRiskTime" maxlength="6" placeholder="*年*月">
+        <label>备注：</label> 
+        <input type="text" name="surveyRemark" maxlength="30">
+    </div>
+</div>
+
+   <h2>8 其他高危行为接触者</h2>
 <div class="block">
     <div class="row">
         <label>接触人数：</label>
@@ -698,15 +743,6 @@
         <button id="genBtn">生成接触者条目</button>
     </div>
     <div id="contactBox"></div>
-</div>
-
-    <div class="row" style="margin-top:30px;">
-    <label>被调查人的配偶或性伴：</label>
-    <!-- 强制固定name="partnerName"，type="text"，默认值/ -->
-    <input type="text" name="partnerName" maxlength="4" value="/">
-    <label>备注：</label> 
-    <!-- 强制固定name="surveyRemark"，type="text" -->
-    <input type="text" name="surveyRemark" maxlength="30">
 </div>
 
 <div class="row">
@@ -783,20 +819,16 @@ function createContactLine() {
     </div>
 </div>
 
-<div class="row" style="margin-top:30px;">
-    <label>被调查人的配偶或性伴：</label>
-   <input type="text" name="partnerName" maxlength="4" value="/">
-    <label>备注：</label> 
-    <input type="text" name="surveyRemark" maxlength="30">
-</div>
-<div class="row">
-    <label>调查单位：</label>
-    <input type="text" name="surveyUnit" maxlength="10">
-    <label>调查人：</label>
-    <input type="text" name="surveyUser" maxlength="4">
-    <label>调查日期<span class="required">*</span>：</label>
-    <input type="date" name="surveyDate">
-</div>
+<div class="row">        
+    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:16px;">
+        <span style="font-weight:bold;font-size:14px;">③居住地：</span>
+                <input type="text" name="contactAddr${i}" maxlength="30">
+                <label>暴露地：</label>
+                <input type="text" name="contactExposeAddr${i}" maxlength="30">
+                <label>末次高危行为：</label>
+                <input type="text" name="contactLastRisk${i}" maxlength="6" placeholder="*年*月">
+            </div>
+            <div class="row">
 
 <div class="row">
     <!-- 第二处单选：告知方式 -->
@@ -832,19 +864,11 @@ box.appendChild(line);
 // ========== 收集表单全部数据 ==========
 function collectFormData() {
     const data = {};
-    // 强制读取核心字段，彻底杜绝读取不到的问题
-    const partnerInput = document.querySelector('input[name="partnerName"]');
-    const remarkInput = document.querySelector('input[name="surveyRemark"]');
-    data.partnerName = partnerInput ? partnerInput.value.trim() : "";
-    data.surveyRemark = remarkInput ? remarkInput.value.trim() : "";
-    console.log("✅ 配偶字段值：", data.partnerName);
-    console.log("✅ 备注字段值：", data.surveyRemark);
-
-    // 原有单选框逻辑不变
+    // 单选框
     document.querySelectorAll('input[type="radio"]').forEach(rd => {
         if (rd.checked) data[rd.name] = rd.value;
     });
-    // 原有复选框分组逻辑不变
+    // 复选框分组
     const checkGroups = {
         sexBehavior: [],
         childHas: [],
@@ -857,11 +881,11 @@ function collectFormData() {
         if (cb.checked && checkGroups[cb.name]) checkGroups[cb.name].push(cb.value);
     });
     Object.assign(data, checkGroups);
-    // 原有普通文本输入框逻辑不变
+    // 普通文本输入框
     document.querySelectorAll('input[type="text"],input[type="date"],input[type="number"]').forEach(inp => {
         if (inp.name) data[inp.name] = inp.value.trim();
     });
-    // 原有接触者列表逻辑不变
+    // 读取接触者列表
     const contactBox = document.getElementById("contactBox");
     const contactList = [];
     contactBox.querySelectorAll(".contact-line").forEach((line, idx) => {
@@ -885,9 +909,9 @@ function collectFormData() {
     data.contactCount = document.getElementById("contactCount").value;
     data.contactList = contactList;
     data.createTime = new Date().getTime();
-    console.log("✅ 完整导出数据：", data);
     return data;
 }
+
 
 // ========== 保存本条记录 ==========
 function saveCurrentItem() {
@@ -916,8 +940,8 @@ function exportExcel() {
         "暴露来源","暴露其他说明","暴露级别","是否药物阻断","阻断药名称",
         "患儿母亲状态","患儿病例卡号","喂养方式","母婴阻断治疗","临床症状","症状其他说明",
         "既往有无症状","人群类别","人群其他说明","样本来源","样本其他说明",
-        "感染途径","途径其他说明","感染时间推断","感染地点推断",
-        "接触人数","被调查人配偶或性伴","备注","调查单位","调查人","调查日期","创建时间戳"
+       "感染途径","途径其他说明","感染时间推断","感染地点推断",
+"接触人数","被调查人配偶或性伴","配偶性别","配偶年龄","接触方式","居住地","暴露地","末次高危行为时间","备注","调查单位","调查人","调查日期","创建时间戳"
     ];
     csv += headers.join(",") + "\n";
 
@@ -943,7 +967,13 @@ function exportExcel() {
         data.contactCount||"",
         // 4. 被调查人配偶或性伴、备注（和表头顺序完全对应）
         data.partnerName || "",
-        data.surveyRemark || "",
+       data.partnerSex || "",
+       data.partnerAge || "",
+       data.partnerContactType || "",
+      data.partnerAddr || "",
+      data.partnerExposePlace || "",
+      data.partnerLastRiskTime || "",
+      data.surveyRemark || "",
         // 5. 调查单位 → 创建时间戳
         data.surveyUnit||"", data.surveyUser||"", data.surveyDate||"", data.createTime||""
     ];
@@ -968,7 +998,7 @@ function exportWord() {
 <html xmlns:w="urn:schemas-microsoft-com:office:word">
 <head>
 <meta charset="utf-8">
-<title>HIV/AIDS 个案DC调查表</title>
+<title>HIV/AIDS 个案流行病学调查表</title>
 <style>
 body { font-family: "宋体"; font-size: 14px; line-height: 2.3; margin: 35px; }
 h1 { text-align: right; font-size: 24px; font-weight: bold; margin-bottom: 30px; }
@@ -1071,6 +1101,30 @@ h3 { font-size: 16px; margin: 12px 0 6px; }
 <div class="line">6.3 感染地点推断：<span class="box">${data.infectArea || ""}</span></div>
 
 <h2>7 高危行为接触者</h2>
+<div class="block">
+    <div class="row">
+        <span>姓名：</span>
+        <span class="box">${data.partnerName || ""}</span>
+        <span>性别：</span>
+        <span class="box">${data.partnerSex || ""}</span>
+        <span>年龄(岁)：</span>
+        <span class="box">${data.partnerAge || ""}</span>
+        <span>接触方式：</span>
+        <span class="box">${data.partnerContactType || ""}</span>
+        <span>居住地：</span>
+        <span class="box">${data.partnerAddr || ""}</span>
+        <span>暴露地：</span>
+        <span class="box">${data.partnerExposePlace || ""}</span>
+    </div>
+    <div class="row">
+        <span>末次高危行为时间：</span>
+        <span class="box">${data.partnerLastRiskTime || ""}</span>
+        <span>备注：</span>
+        <span class="box">${data.surveyRemark || ""}</span>
+    </div>
+</div>
+
+<h2>8 其他高危行为接触者</h2>
 <div class="line">登记接触总人数：<span class="box">${data.contactCount || 0}</span> 人</div>
 `;
 
@@ -1093,6 +1147,12 @@ h3 { font-size: 16px; margin: 12px 0 6px; }
 html += `
 <div class="line" style="margin-top:30px;">
 被调查人配偶或性伴：<span class="box">${data.partnerName || ""}</span>
+性别：<span class="box">${data.partnerSex || ""}</span>
+年龄：<span class="box">${data.partnerAge || ""}</span>
+接触方式：<span class="box">${data.partnerContactType || ""}</span>
+居住地：<span class="box">${data.partnerAddr || ""}</span>
+暴露地：<span class="box">${data.partnerExposePlace || ""}</span>
+末次高危行为时间：<span class="box">${data.partnerLastRiskTime || ""}</span>
 备注：<span class="box">${data.surveyRemark || ""}</span>
 调查单位：<span class="box">${data.surveyUnit || ""}</span>
 调查人：<span class="box">${data.surveyUser || ""}</span>
@@ -1133,23 +1193,19 @@ function openHistoryModal() {
     if (records.length === 0) {
         listWrap.innerHTML = "<p>暂无历史调查记录</p>";
     } else {
-       
- records.forEach((rec, idx) => {
-    const div = document.createElement("div");
-    div.className = "history-item";
-    const d = new Date(rec.createTime);
-    // 拼接被调查人姓名展示
-    const userName = rec.investigateeName || "未填写姓名";
-    div.innerHTML = `
-        <div>记录${idx+1} | 被调查人：${userName} | ${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}</div>
-        <div class="history-btn-group">
-            <button class="edit-his" data-idx="${idx}">编辑填入表单</button>
-            <button class="del-his" data-idx="${idx}">删除本条</button>
-        </div>
-    `;
-    listWrap.appendChild(div);
-});
-
+        records.forEach((rec, idx) => {
+            const div = document.createElement("div");
+            div.className = "history-item";
+            const d = new Date(rec.createTime);
+            div.innerHTML = `
+                <div>记录${idx+1}｜被调查人：${rec.investigateeName || '未填写姓名'} — ${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,'0')}-${d.getDate().toString().padStart(2,'0')} ${d.getHours().toString().padStart(2,'0')}:${d.getMinutes().toString().padStart(2,'0')}</div>
+                <div class="history-btn-group">
+                    <button class="edit-his" data-idx="${idx}">编辑填入表单</button>
+                    <button class="del-his" data-idx="${idx}">删除本条</button>
+                </div>
+            `;
+            listWrap.appendChild(div);
+        });
         // 历史弹窗内编辑/删除绑定
         document.querySelectorAll(".edit-his").forEach(btn=>{
             btn.addEventListener("click", ()=>{
