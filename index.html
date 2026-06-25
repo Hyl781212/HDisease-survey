@@ -23,7 +23,7 @@
 }
 </style>
     <meta charset="UTF-8">
-    <title>HIV/AIDS 流行病学个案调查表</title>
+    <title>HD -survey</title>
     <style>
         * {
             box-sizing: border-box;
@@ -201,10 +201,10 @@
     </div>
 </div>
 
-<!-- 统一大边框容器：1.1~1.8全部收纳在内 -->
+<!-- 1.1~1.8 独立外框 -->
 <div class="block" style="border:1px solid #000; padding:12px;">
     <div class="row">
-        <label><span class="bold-text">1.1 文化程度：</label>
+        <label><span class="bold-text">1.1 文化程度：</span>
         <div class="item-group radio-culture">
             <label><input type="radio" name="culture" value="文盲"> 文盲</label>
             <label><input type="radio" name="culture" value="小学"> 小学</label>
@@ -215,356 +215,365 @@
         </div>
     </div>
 
-   <div class="row">
+    <div class="row">
         <div style="display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:16px;">
-    <span style="font-weight:bold;font-size:14px;">1.2 职业：</span>
-                <label><input type="radio" name="job" value="幼托儿童"> 幼托儿童</label>
-                <label><input type="radio" name="job" value="散居儿童"> 散居儿童</label>
-                <label><input type="radio" name="job" value="学生(大中小学)"> 学生(大中小学)</label>
-                <label><input type="radio" name="job" value="教师"> 教师</label>
-                <label><input type="radio" name="job" value="保育员及保姆"> 保育员及保姆</label>
-                <label><input type="radio" name="job" value="餐饮食品业"> 餐饮食品业</label>
-                <label><input type="radio" name="job" value="商业服务"> 商业服务</label>
-                <label><input type="radio" name="job" value="医务人员"> 医务人员</label>
-                <label><input type="radio" name="job" value="工人"> 工人</label>
-                <label><input type="radio" name="job" value="民工"> 民工</label>
-                <label><input type="radio" name="job" value="农民"> 农民</label>
-                <label><input type="radio" name="job" value="牧民"> 牧民</label>
-                <label><input type="radio" name="job" value="渔(船)民"> 渔(船)民</label>
-                <label><input type="radio" name="job" value="干部职员"> 干部职员</label>
-                <label><input type="radio" name="job" value="离退人员"> 离退人员</label>
-                <label><input type="radio" name="job" value="家务及待业"> 家务及待业</label>
-                <label><input type="radio" name="job" value="其他"> 其他</label>
-                <input type="text" name="jobOther" maxlength="20" placeholder="请注明">
-                <label><input type="radio" name="job" value="不详"> 不详</label>
-            </div>
+            <span style="font-weight:bold;font-size:14px;">1.2 职业：</span>
+            <label><input type="radio" name="job" value="幼托儿童"> 幼托儿童</label>
+            <label><input type="radio" name="job" value="散居儿童"> 散居儿童</label>
+            <label><input type="radio" name="job" value="学生(大中小学)"> 学生(大中小学)</label>
+            <label><input type="radio" name="job" value="教师"> 教师</label>
+            <label><input type="radio" name="job" value="保育员及保姆"> 保育员及保姆</label>
+            <label><input type="radio" name="job" value="餐饮食品业"> 餐饮食品业</label>
+            <label><input type="radio" name="job" value="商业服务"> 商业服务</label>
+            <label><input type="radio" name="job" value="医务人员"> 医务人员</label>
+            <label><input type="radio" name="job" value="工人"> 工人</label>
+            <label><input type="radio" name="job" value="民工"> 民工</label>
+            <label><input type="radio" name="job" value="农民"> 农民</label>
+            <label><input type="radio" name="job" value="牧民"> 牧民</label>
+            <label><input type="radio" name="job" value="渔(船)民"> 渔(船)民</label>
+            <label><input type="radio" name="job" value="干部职员"> 干部职员</label>
+            <label><input type="radio" name="job" value="离退人员"> 离退人员</label>
+            <label><input type="radio" name="job" value="家务及待业"> 家务及待业</label>
+            <label><input type="radio" name="job" value="其他"> 其他</label>
+            <input type="text" name="jobOther" maxlength="20" placeholder="请注明">
+            <label><input type="radio" name="job" value="不详"> 不详</label>
         </div>
-        <div class="row">
-            <label>工作单位/学校：</label>
-            <input type="text" name="workUnit" maxlength="50" placeholder="民工/教师/医务人员/工人/干部职工/学生/托幼儿童需填">
-        </div>
+    </div>
+    <div class="row">
+        <label>工作单位/学校：</label>
+        <input type="text" name="workUnit" maxlength="50" placeholder="民工/教师/医务人员/工人/干部职工/学生/托幼儿童需填">
+    </div>
 
-        <div class="row">
-            <label><span class="bold-text">1.3 婚姻：</span>
-            <div class="item-group radio-marry">
-                <label><input type="radio" name="marry" value="未婚"> 未婚</label>
-                <label><input type="radio" name="marry" value="离异或丧偶"> 离异或丧偶</label>
-                <label><input type="radio" name="marry" value="不详"> 不详</label>
-                <label><input type="radio" name="marry" value="已婚"> 已婚</label>
-                <label><input type="radio" name="marry" value="同居"> 同居</label>
-            </div>
+    <div class="row">
+        <label><span class="bold-text">1.3 婚姻：</span>
+        <div class="item-group radio-marry">
+            <label><input type="radio" name="marry" value="未婚"> 未婚</label>
+            <label><input type="radio" name="marry" value="离异或丧偶"> 离异或丧偶</label>
+            <label><input type="radio" name="marry" value="不详"> 不详</label>
+            <label><input type="radio" name="marry" value="已婚"> 已婚</label>
+            <label><input type="radio" name="marry" value="同居"> 同居</label>
         </div>
+    </div>
 
-        <div class="row">
-            <label><span class="bold-text">1.4 配偶或性伴抗体检测：</span>
-            <div class="item-group radio-partner-test">
-                <label><input type="radio" name="partnerTest" value="未查/不详"> 未查/不详</label>
-                <label><input type="radio" name="partnerTest" value="阴性"> 阴性</label>
-                <label><input type="radio" name="partnerTest" value="阳性"> 阳性</label>
-            </div>
-            <input type="text" name="partnerTestDate" maxlength="16" placeholder="填写检测年月">
+    <div class="row">
+        <label><span class="bold-text">1.4 配偶或性伴抗体检测：</span>
+        <div class="item-group radio-partner-test">
+            <label><input type="radio" name="partnerTest" value="未查/不详"> 未查/不详</label>
+            <label><input type="radio" name="partnerTest" value="阴性"> 阴性</label>
+            <label><input type="radio" name="partnerTest" value="阳性"> 阳性</label>
         </div>
-        <div class="row">
-            <label>近1年内的性伴数量：</label>
-            <div class="item-group radio-partner-num">
-                <label><input type="radio" name="partnerNum" value="0人"> 0人</label>
-                <label><input type="radio" name="partnerNum" value="1人"> 1人</label>
-                <label><input type="radio" name="partnerNum" value="2人以上"> 2人以上</label>
-                <label><input type="radio" name="partnerNum" value="5人以上"> 5人以上</label>
-            </div>
+        <input type="text" name="partnerTestDate" maxlength="16" placeholder="填写检测年月">
+    </div>
+    <div class="row">
+        <label>近1年内的性伴数量：</label>
+        <div class="item-group radio-partner-num">
+            <label><input type="radio" name="partnerNum" value="0人"> 0人</label>
+            <label><input type="radio" name="partnerNum" value="1人"> 1人</label>
+            <label><input type="radio" name="partnerNum" value="2人以上"> 2人以上</label>
+            <label><input type="radio" name="partnerNum" value="5人以上"> 5人以上</label>
         </div>
-        <div class="row">
-            <label>近1年内的性伴中是否有人艾滋病检测阳性？</label>
-            <div class="item-group radio-partner-hiv">
-                <label><input type="radio" name="partnerHiv" value="有"> 有</label>
-                <label><input type="radio" name="partnerHiv" value="无"> 无</label>
-                <label><input type="radio" name="partnerHiv" value="不清楚"> 不清楚</label>
-            </div>
+    </div>
+    <div class="row">
+        <label>近1年内的性伴中是否有人艾滋病检测阳性？</label>
+        <div class="item-group radio-partner-hiv">
+            <label><input type="radio" name="partnerHiv" value="有"> 有</label>
+            <label><input type="radio" name="partnerHiv" value="无"> 无</label>
+            <label><input type="radio" name="partnerHiv" value="不清楚"> 不清楚</label>
         </div>
-        <div class="row">
-            <label>是否有固定性伴：</label>
-            <div class="item-group radio-fixed-partner">
-                <label><input type="radio" name="fixedPartner" value="有"> 有</label>
-                <label><input type="radio" name="fixedPartner" value="无"> 无</label>
-            </div>
+    </div>
+    <div class="row">
+        <label>是否有固定性伴：</label>
+        <div class="item-group radio-fixed-partner">
+            <label><input type="radio" name="fixedPartner" value="有"> 有</label>
+            <label><input type="radio" name="fixedPartner" value="无"> 无</label>
         </div>
+    </div>
 
-        <div class="row">
-            <label><span class="bold-text">1.5有无子女：</label>
-            <div class="item-group">
-                <label><input type="checkbox" name="childHas" value="无"> 无</label>
-                <label><input type="checkbox" name="childHas" value="有"> 有</label>
-                <label><input type="checkbox" name="childHas" value="孕期中"> 孕期中</label>
-            </div>
-            <label>检测：</label>
-            <div class="item-group radio-child-test">
-                <label><input type="radio" name="childTest" value="阳性"> 阳性</label>
-                <label><input type="radio" name="childTest" value="阴性"> 阴性</label>
-                <label><input type="radio" name="childTest" value="未查/不详"> 未查/不详</label>
-            </div>
+    <div class="row">
+        <label><span class="bold-text">1.5有无子女：</label>
+        <div class="item-group">
+            <label><input type="checkbox" name="childHas" value="无"> 无</label>
+            <label><input type="checkbox" name="childHas" value="有"> 有</label>
+            <label><input type="checkbox" name="childHas" value="孕期中"> 孕期中</label>
         </div>
+        <label>检测：</label>
+        <div class="item-group radio-child-test">
+            <label><input type="radio" name="childTest" value="阳性"> 阳性</label>
+            <label><input type="radio" name="childTest" value="阴性"> 阴性</label>
+            <label><input type="radio" name="childTest" value="未查/不详"> 未查/不详</label>
+        </div>
+    </div>
 
-        <div class="row">
-            <label><span class="bold-text">1.6 药品使用：</label>
-            <div class="item-group radio-use-drug">
-                <label><input type="radio" name="useDrug" value="否"> 否</label>
-                <label><input type="radio" name="useDrug" value="是"> 是</label>
-            </div>
-            <label>药物名称：</label>
-            <input type="text" name="drugName" maxlength="10" placeholder="请注明药物名称">
+    <div class="row">
+        <label><span class="bold-text">1.6 药品使用：</label>
+        <div class="item-group radio-use-drug">
+            <label><input type="radio" name="useDrug" value="否"> 否</label>
+            <label><input type="radio" name="useDrug" value="是"> 是</label>
         </div>
-        <div class="row">
-            <label>是否接受过暴露前后的药物预防治疗：</label>
-            <div class="item-group radio-pep">
-                <label><input type="radio" name="pep" value="否"> 否</label>
-                <label><input type="radio" name="pep" value="是"> 是</label>
-            </div>
-            <input type="text" name="pepDrug" maxlength="8" placeholder="请注明药物名称">
+        <label>药物名称：</label>
+        <input type="text" name="drugName" maxlength="10" placeholder="请注明药物名称">
+    </div>
+    <div class="row">
+        <label>是否接受过暴露前后的药物预防治疗：</label>
+        <div class="item-group radio-pep">
+            <label><input type="radio" name="pep" value="否"> 否</label>
+            <label><input type="radio" name="pep" value="是"> 是</label>
         </div>
+        <input type="text" name="pepDrug" maxlength="8" placeholder="请注明药物名称">
+    </div>
 
     <!-- 1.7 检测CD4 -->
     <div class="row">
-        <label><span class="bold-text">1.7 检测CD4：</label>
-            <label><input type="radio" name="cd4" value="否"> 否</label>
-            <label><input type="radio" name="cd4" value="是"> 是</label>
-            <input type="text" name="cd4Num" placeholder="填写检测结果"> 个/μl
+        <label><span class="bold-text">1.7 检测CD4：</span>
+        <label><input type="radio" name="cd4" value="否"> 否</label>
+        <label><input type="radio" name="cd4" value="是"> 是</label>
+        <input type="text" name="cd4Num" placeholder="填写检测结果"> 个/μl
         </label>
     </div>
 
     <div class="row">
-            <label><span class="bold-text">1.8 检测史：</label>
+        <label><span class="bold-text">1.8 检测史：</span>
         <label>确诊前是否做过HIV检测：</label>
         <div class="item-group" style="display:inline-flex;gap:12px;margin:0 10px;">
             <label><input type="radio" name="stuHivTest" value="否"> 否</label>
-            <label><input type="radio" name="stuHivTest" value="是" checked> 是</label>
+            <label><input type="radio" name="stuHivTest" value="是"> 是</label>
         </div>
         <label>最近一次检测阴性时间：</label>
         <input type="text" name="stuLastNegTime" maxlength="9" value="/">
     </div>
 </div>
 
-    <h2>2. 高危行为和因素</h2>
-    <div class="block">
-        <h3>2.1 吸毒史</h3>
-        <div class="row">
-            <label>目前吸毒方式：</label>
-            <div class="item-group radio-drug-way">
-                <label><input type="radio" name="drugWay" value="不吸毒"> 不吸毒</label>
-                <label><input type="radio" name="drugWay" value="口吸"> 口吸</label>
-                <label><input type="radio" name="drugWay" value="注射"> 注射</label>
-                <label><input type="radio" name="drugWay" value="都有"> 都有</label>
-            </div>
-            <label>首次吸毒时间：</label>
-            <input type="text" name="firstDrugTime" maxlength="6" placeholder="*年*月">
-        </div>
-        <div class="row">
-            <label>首次注射吸毒时间：</label>
-            <input type="text" name="firstInjectDrugTime" maxlength="6" placeholder="*年*月">
-        </div>
-        <div class="row">
-            <label>共用注射器吸毒：</label>
-            <div class="item-group radio-share-needle">
-                <label><input type="radio" name="shareNeedle" value="无"> 无</label>
-                <label><input type="radio" name="shareNeedle" value="有"> 有</label>
-            </div>
-            <label>共用注射器的人数：</label>
-            <input type="text" name="shareNeedleNum" maxlength="3">
-        </div>
-        <div class="row">
-            <label>配偶或性伴是否吸毒：</label>
-<div class="item-group radio-partner-drug">
-  <label><input type="radio" name="spouseDrug" value="否"> 否</label>
-  <label><input type="radio" name="spouseDrug" value="口吸"> 口吸</label>
-  <label><input type="radio" name="spouseDrug" value="注射"> 注射</label>
-  </div>
-</div>
-
-        <h3>2.2 性接触史</h3>
+<h2>2. 高危行为和因素</h2>
+<!-- 2.1~2.6 独立外框 -->
+<div class="block" style="border:1px solid #000; padding:12px;">
+    <h3>2.1 吸毒史</h3>
 <div class="row">
-    <label>性行为(可多选)：</label>
+    <label>目前吸毒方式：</label>
+    <div class="item-group radio-drug-way">
+        <label><input type="radio" name="drugWay" value="不吸毒"> 不吸毒</label>
+        <label><input type="radio" name="drugWay" value="口吸"> 口吸</label>
+        <label><input type="radio" name="drugWay" value="注射"> 注射</label>
+        <label><input type="radio" name="drugWay" value="都有"> 都有</label>
+    </div>
+    <label>首次吸毒时间：</label>
+    <input type="text" name="firstDrugTime" maxlength="6" placeholder="*年*月">
+</div>
+<div class="row">
+    <label>首次注射吸毒时间：</label>
+    <input type="text" name="firstInjectDrugTime" maxlength="6" placeholder="*年*月">
+    &nbsp;&nbsp;
+    <label>共用注射器吸毒：</label>
+    <div class="item-group radio-share-needle">
+        <label><input type="radio" name="shareNeedle" value="无"> 无</label>
+        <label><input type="radio" name="shareNeedle" value="有"> 有</label>
+    </div>
+    <label>共用注射器的人数：</label>
+    <input type="text" name="shareNeedleNum" maxlength="3">
+</div>
+<div class="row">
+    <label>确诊前是否使用过成瘾性物质：</label>
+    <select name="stuAddictSub">
+        <option value="">请选择</option>
+        <option value="传统毒品(如海洛因、可卡因等)">传统毒品(如海洛因、可卡因等)</option>
+        <option value="新型毒品(如K粉、冰毒等)">新型毒品(如K粉、冰毒等)</option>
+        <option value="零号胶囊">零号胶囊</option>
+        <option value="Rush">Rush</option>
+        <option value="无">无</option>
+    </select>
+</div>
+<div class="row">
+    <label>配偶或性伴是否吸毒：</label>
     <div class="item-group">
-        <label><input type="checkbox" name="sexBehavior" value="无"> 无</label>
-        <label><input type="checkbox" name="sexBehavior" value="①婚内"> ①婚内</label>
-        <label><input type="checkbox" name="sexBehavior" value="②商业"> ②商业</label>
-        <label><input type="checkbox" name="sexBehavior" value="③非商业"> ③非商业</label>
-        <label><input type="checkbox" name="sexBehavior" value="④同性"> ④同性</label>
-    </div>
-    </div>
-        <div class="row">
-      <label>发生非婚异性性行为人数：</label>
-    <input type="text" name="heteroNum" maxlength="3">
-    <label>发生肛交人数：</label>
-    <input type="text" name="analNum" maxlength="3">
-</div>
-<div class="row">
-    <label>最后一次性接触：</label>
-    <div class="item-group radio-last-sex">
-        <label><input type="radio" name="lastSex" value="未戴套"> 未戴套</label>
-        <label><input type="radio" name="lastSex" value="戴套"> 戴套</label>
-    </div>
-    <input type="text" name="lastSexRemark" maxlength="8" placeholder="注明①②③④">
-</div>
-<div class="row">
-    <label>上个月异性性行为(可多选)：</label>
-    <div class="item-group">
-        <label><input type="checkbox" name="monthHetero" value="无"> 无</label>
-
-        <label><input type="checkbox" name="monthHetero" value="从不戴套"> 从不戴套</label>
-        <input type="text" name="monthNoCondomRemark" maxlength="6" placeholder="注明①②③">
-
-        <label><input type="checkbox" name="monthHetero" value="有时戴套"> 有时戴套</label>
-        <input type="text" name="monthSometimesRemark" maxlength="6" placeholder="注明①②③">
-
-        <label><input type="checkbox" name="monthHetero" value="每次都戴"> 每次都戴</label>
-        <input type="text" name="monthAllRemark" maxlength="6" placeholder="注明①②③">
+        <label><input type="radio" name="partnerDrug" value="否"> 否</label>
+        <label><input type="radio" name="partnerDrug" value="口吸"> 口吸</label>
+        <label><input type="radio" name="partnerDrug" value="注射"> 注射</label>
     </div>
 </div>
-<div class="row">
-    <label>半年内肛交(可多选)：</label>
-    <div class="item-group">
-        <label><input type="checkbox" name="halfYearAnal" value="无"> 无</label>
-        <label><input type="checkbox" name="halfYearAnal" value="从不戴套"> 从不戴套</label>
-        <label><input type="checkbox" name="halfYearAnal" value="有时戴"> 有时戴</label>
-        <label><input type="checkbox" name="halfYearAnal" value="每次都戴"> 每次都戴</label>
+
+    <h3>2.2 性接触史</h3>
+    <div class="row">
+        <label>性行为(可多选)：</label>
+        <div class="item-group">
+            <label><input type="checkbox" name="sexBehavior" value="无"> 无</label>
+            <label><input type="checkbox" name="sexBehavior" value="①婚内"> ①婚内</label>
+            <label><input type="checkbox" name="sexBehavior" value="②商业"> ②商业</label>
+            <label><input type="checkbox" name="sexBehavior" value="③非商业"> ③非商业</label>
+            <label><input type="checkbox" name="sexBehavior" value="④同性"> ④同性</label>
+        </div>
     </div>
-</div>
-<div class="row">
-    <label>性病史：</label>
-    <div class="item-group radio-std">
-        <label><input type="radio" name="std" value="无"> 无</label>
-        <label><input type="radio" name="std" value="不详"> 不详</label>
-        <label><input type="radio" name="std" value="有"> 有</label>
+    <div class="row">
+        <label>发生非婚异性性行为人数：</label>
+        <input type="text" name="heteroNum" maxlength="3">
+        <label>发生肛交人数：</label>
+        <input type="text" name="analNum" maxlength="3">
     </div>
- </div>
-
-        <h3>2.3 受血史</h3>
-        <div class="row">
-            <label>受血类别(可多选)：</label>
-            <div class="item-group">
-                <label><input type="checkbox" name="bloodType" value="无"> 无</label>
-                <label><input type="checkbox" name="bloodType" value="全血"> 全血</label>
-                <label><input type="checkbox" name="bloodType" value="血浆"> 血浆</label>
-                <label><input type="checkbox" name="bloodType" value="血制品"> 血制品</label>
-            </div>
+    <div class="row">
+        <label>最后一次性接触：</label>
+        <div class="item-group radio-last-sex">
+            <label><input type="radio" name="lastSex" value="未戴套"> 未戴套</label>
+            <label><input type="radio" name="lastSex" value="戴套"> 戴套</label>
         </div>
-        <div class="row">
-            <label>首次时间：</label>
-            <input type="text" name="firstBloodTime" maxlength="6" placeholder="如：202606">
-            <label>地点：</label>
-            <input type="text" name="firstBloodAddr" maxlength="8">
-            <label>末次时间：</label>
-            <input type="text" name="lastBloodTime" maxlength="6" placeholder="如：202606">
-            <label>地点：</label>
-            <input type="text" name="lastBloodAddr" maxlength="8">
-        </div>
-        <div class="row">
-            <label>诊断感染前1年因手术、输血等住院治疗：</label>
-            <div class="item-group radio-blood-hospital">
-                <label><input type="radio" name="bloodHospital" value="否"> 否</label>
-                <label><input type="radio" name="bloodHospital" value="有"> 有</label>
-            </div>
-       </div>
-
-       <h3>2.4 供血(浆)史</h3>
-      <div class="row">
-    <label>有无供血(浆)史：</label>
-    <div class="item-group radio-blood-donate">
-        <label><input type="radio" name="bloodDonate" value="无"> 无</label>
-        <label><input type="radio" name="bloodDonate" value="有"> 有</label>
+        <input type="text" name="lastSexRemark" maxlength="8" placeholder="注明①②③④">
     </div>
-</div>
-<div class="row">
-    <label>首次供全血时间：</label>
-    <input type="text" name="lastWholeBloodTime" maxlength="8" placeholder="/年/月">
-    <label>地点：</label>
-    <input type="text" name="lastWholeBloodAddr" maxlength="10" placeholder="/">
-    <label>采血单位：</label>
-    <input type="text" name="lastWholeBloodUnit" maxlength="10" placeholder="/">
-</div><div class="row">
-    <label>末次供全血时间：</label>
-    <input type="text" name="lastWholeBloodTime" maxlength="8" placeholder="/年/月">
-    <label>地点：</label>
-    <input type="text" name="lastWholeBloodAddr" maxlength="10" placeholder="/">
-    <label>采血单位：</label>
-    <input type="text" name="lastWholeBloodUnit" maxlength="10" placeholder="/">
-</div>
-<div class="row">
-    <label>首次供血浆时间：</label>
-    <input type="text" name="firstPlasmaTime" maxlength="8" placeholder="/年/月">
-    <label>地点：</label>
-    <input type="text" name="firstPlasmaAddr" maxlength="10" placeholder="/">
-    <label>采血单位：</label>
-    <input type="text" name="firstPlasmaUnit" maxlength="10" placeholder="/">
-</div>
-<div class="row">
-    <label>末次供血浆时间：</label>
-    <input type="text" name="lastPlasmaTime" maxlength="8" placeholder="/年/月">
-    <label>地点：</label>
-    <input type="text" name="lastPlasmaAddr" maxlength="10" placeholder="/">
-    <label>采血单位：</label>
-    <input type="text" name="lastPlasmaUnit" maxlength="10" placeholder="/">
-</div>
-
-        <h3>2.5 职业暴露</h3>
-        <div class="row">
-            <label>暴露来源：</label>
-            <div class="item-group radio-expose-src">
-                <label><input type="radio" name="exposeSrc" value="无"> 无</label>
-                <label><input type="radio" name="exposeSrc" value="临床治疗"> 临床治疗</label>
-                <label><input type="radio" name="exposeSrc" value="手术"> 手术</label>
-                <label><input type="radio" name="exposeSrc" value="实验室检测"> 实验室检测</label>
-                <label><input type="radio" name="exposeSrc" value="他人故意伤害"> 他人故意伤害</label>
-                <label><input type="radio" name="exposeSrc" value="其他"> 其他</label>
-            </div>
-            <input type="text" name="exposeSrcOther" maxlength="8" placeholder="选择其他请注明">
+    <div class="row">
+        <label>上个月异性性行为(可多选)：</label>
+        <div class="item-group">
+            <label><input type="checkbox" name="monthHetero" value="无"> 无</label>
+            <label><input type="checkbox" name="monthHetero" value="从不戴套"> 从不戴套</label>
+            <input type="text" name="monthNoCondomRemark" maxlength="6" placeholder="注明①②③">
+            <label><input type="checkbox" name="monthHetero" value="有时戴套"> 有时戴套</label>
+            <input type="text" name="monthSometimesRemark" maxlength="6" placeholder="注明①②③">
+            <label><input type="checkbox" name="monthHetero" value="每次都戴"> 每次都戴</label>
+            <input type="text" name="monthAllRemark" maxlength="6" placeholder="注明①②③">
         </div>
-        <div class="row">
-            <label>暴露级别：</label>
-            <div class="item-group radio-expose-level">
-                <label><input type="radio" name="exposeLevel" value="1级暴露"> 1级暴露</label>
-                <label><input type="radio" name="exposeLevel" value="2级暴露"> 2级暴露</label>
-                <label><input type="radio" name="exposeLevel" value="3级暴露"> 3级暴露</label>
-            </div>
+    </div>
+    <div class="row">
+        <label>半年内肛交(可多选)：</label>
+        <div class="item-group">
+            <label><input type="checkbox" name="halfYearAnal" value="无"> 无</label>
+            <label><input type="checkbox" name="halfYearAnal" value="从不戴套"> 从不戴套</label>
+            <label><input type="checkbox" name="halfYearAnal" value="有时戴"> 有时戴</label>
+            <label><input type="checkbox" name="halfYearAnal" value="每次都戴"> 每次都戴</label>
         </div>
-        <div class="row">
-            <label>药物阻断：</label>
-            <div class="item-group radio-block-drug">
-                <label><input type="radio" name="blockDrug" value="否"> 否</label>
-                <label><input type="radio" name="blockDrug" value="是"> 是</label>
-            </div>
-            <input type="text" name="blockDrugName" maxlength="10" placeholder="注明阻断药物名称">
-        </div>
-
-       <!-- 2.6 患儿填写项 -->
-        <h3>2.6 患儿填写项</h3>
-        <div class="row">
-            <label>患儿母亲：</label>
-            <div class="item-group radio-mother-hiv">
-                <label><input type="radio" name="motherHiv"> 未检测</label>
-                <label><input type="radio" name="motherHiv"> 阴性</label>
-                <label><input type="radio" name="motherHiv"> 阳性已治疗</label>
-                <label><input type="radio" name="motherHiv"> 阳性未治疗</label>
-            </div>
-            <input type="text" maxlength="10" placeholder="注明病例报告卡号">
-        </div>
-        <div class="row">
-            <label>喂养方式：</label>
-            <div class="item-group radio-feed">
-                <label><input type="radio" name="feed"> 母乳喂养</label>
-                <label><input type="radio" name="feed"> 人工喂养</label>
-                <label><input type="radio" name="feed"> 混合喂养</label>
-            </div>
-        </div>
-        <div class="row">
-            <label>患儿是否接受母婴阻断药物治疗：</label>
-            <div class="item-group radio-baby-block">
-                <label><input type="radio" name="babyBlock"> 有</label>
-                <label><input type="radio" name="babyBlock"> 无</label>
-            </div>
+    </div>
+    <div class="row">
+        <label>性病史：</label>
+        <div class="item-group radio-std">
+            <label><input type="radio" name="std" value="无"> 无</label>
+            <label><input type="radio" name="std" value="不详"> 不详</label>
+            <label><input type="radio" name="std" value="有"> 有</label>
         </div>
     </div>
 
-   <h2>3. 临床表现</h2>
+    <h3>2.3 受血史</h3>
+    <div class="row">
+        <label>受血类别(可多选)：</label>
+        <div class="item-group">
+            <label><input type="checkbox" name="bloodType" value="无"> 无</label>
+            <label><input type="checkbox" name="bloodType" value="全血"> 全血</label>
+            <label><input type="checkbox" name="bloodType" value="血浆"> 血浆</label>
+            <label><input type="checkbox" name="bloodType" value="血制品"> 血制品</label>
+        </div>
+    </div>
+    <div class="row">
+        <label>首次时间：</label>
+        <input type="text" name="firstBloodTime" maxlength="6" placeholder="如：202606">
+        <label>地点：</label>
+        <input type="text" name="firstBloodAddr" maxlength="8">
+        <label>末次时间：</label>
+        <input type="text" name="lastBloodTime" maxlength="6" placeholder="如：202606">
+        <label>地点：</label>
+        <input type="text" name="lastBloodAddr" maxlength="8">
+    </div>
+    <div class="row">
+        <label>诊断感染前1年因手术、输血等住院治疗：</label>
+        <div class="item-group radio-blood-hospital">
+            <label><input type="radio" name="bloodHospital" value="否"> 否</label>
+            <label><input type="radio" name="bloodHospital" value="有"> 有</label>
+        </div>
+    </div>
+
+    <h3>2.4 供血(浆)史</h3>
+    <div class="row">
+        <label>有无供血(浆)史：</label>
+        <div class="item-group radio-blood-donate">
+            <label><input type="radio" name="bloodDonate" value="无"> 无</label>
+            <label><input type="radio" name="bloodDonate" value="有"> 有</label>
+        </div>
+    </div>
+    <div class="row">
+        <label>首次供全血时间：</label>
+        <input type="text" name="lastWholeBloodTime" maxlength="8" placeholder="/年/月">
+        <label>地点：</label>
+        <input type="text" name="lastWholeBloodAddr" maxlength="10" placeholder="/">
+        <label>采血单位：</label>
+        <input type="text" name="lastWholeBloodUnit" maxlength="10" placeholder="/">
+    </div>
+    <div class="row">
+        <label>末次供全血时间：</label>
+        <input type="text" name="lastWholeBloodTime" maxlength="8" placeholder="/年/月">
+        <label>地点：</label>
+        <input type="text" name="lastWholeBloodAddr" maxlength="10" placeholder="/">
+        <label>采血单位：</label>
+        <input type="text" name="lastWholeBloodUnit" maxlength="10" placeholder="/">
+    </div>
+    <div class="row">
+        <label>首次供血浆时间：</label>
+        <input type="text" name="firstPlasmaTime" maxlength="8" placeholder="/年/月">
+        <label>地点：</label>
+        <input type="text" name="firstPlasmaAddr" maxlength="10" placeholder="/">
+        <label>采血单位：</label>
+        <input type="text" name="firstPlasmaUnit" maxlength="10" placeholder="/">
+    </div>
+    <div class="row">
+        <label>末次供血浆时间：</label>
+        <input type="text" name="lastPlasmaTime" maxlength="8" placeholder="/年/月">
+        <label>地点：</label>
+        <input type="text" name="lastPlasmaAddr" maxlength="10" placeholder="/">
+        <label>采血单位：</label>
+        <input type="text" name="lastPlasmaUnit" maxlength="10" placeholder="/">
+    </div>
+
+    <h3>2.5 职业暴露</h3>
+    <div class="row">
+        <label>暴露来源：</label>
+        <div class="item-group radio-expose-src">
+            <label><input type="radio" name="exposeSrc" value="无"> 无</label>
+            <label><input type="radio" name="exposeSrc" value="临床治疗"> 临床治疗</label>
+            <label><input type="radio" name="exposeSrc" value="手术"> 手术</label>
+            <label><input type="radio" name="exposeSrc" value="实验室检测"> 实验室检测</label>
+            <label><input type="radio" name="exposeSrc" value="他人故意伤害"> 他人故意伤害</label>
+            <label><input type="radio" name="exposeSrc" value="其他"> 其他</label>
+        </div>
+        <input type="text" name="exposeSrcOther" maxlength="8" placeholder="选择其他请注明">
+    </div>
+    <div class="row">
+        <label>暴露级别：</label>
+        <div class="item-group radio-expose-level">
+            <label><input type="radio" name="exposeLevel" value="1级暴露"> 1级暴露</label>
+            <label><input type="radio" name="exposeLevel" value="2级暴露"> 2级暴露</label>
+            <label><input type="radio" name="exposeLevel" value="3级暴露"> 3级暴露</label>
+        </div>
+    </div>
+    <div class="row">
+        <label>药物阻断：</label>
+        <div class="item-group radio-block-drug">
+            <label><input type="radio" name="blockDrug" value="否"> 否</label>
+            <label><input type="radio" name="blockDrug" value="是"> 是</label>
+        </div>
+        <input type="text" name="blockDrugName" maxlength="10" placeholder="注明阻断药物名称">
+    </div>
+
+    <!-- 2.6 患儿填写项 -->
+    <h3>2.6 患儿填写项</h3>
+    <div class="row">
+        <label>患儿母亲：</label>
+        <div class="item-group radio-mother-hiv">
+            <label><input type="radio" name="motherHiv" value="未检测"> 未检测</label>
+            <label><input type="radio" name="motherHiv" value="阴性"> 阴性</label>
+            <label><input type="radio" name="motherHiv" value="阳性已治疗"> 阳性已治疗</label>
+            <label><input type="radio" name="motherHiv" value="阳性未治疗"> 阳性未治疗</label>
+        </div>
+        <input type="text" name="motherCardId" maxlength="10" placeholder="注明病例报告卡号">
+    </div>
+    <div class="row">
+        <label>喂养方式：</label>
+        <div class="item-group radio-feed">
+            <label><input type="radio" name="feed" value="母乳喂养"> 母乳喂养</label>
+            <label><input type="radio" name="feed" value="人工喂养"> 人工喂养</label>
+            <label><input type="radio" name="feed" value="混合喂养"> 混合喂养</label>
+        </div>
+    </div>
+    <div class="row">
+        <label>患儿是否接受母婴阻断药物治疗：</label>
+        <div class="item-group radio-baby-block">
+            <label><input type="radio" name="babyBlock" value="有"> 有</label>
+            <label><input type="radio" name="babyBlock" value="无"> 无</label>
+        </div>
+    </div>
+</div>
+
+ <h2>3. 临床表现</h2>
     <div class="block">
       <div style="display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:16px;">
     <span style="font-weight:bold;font-size:14px;">3.1 目前症状(可多选)：</span>
@@ -597,6 +606,7 @@
             </div>
         </div>
     </div>
+
 
     <h2>4. 人群类别<span class="required">*</span></h2>
     <div class="block">
@@ -754,11 +764,10 @@
     <div id="contactBox"></div>
 </div>
 
-<h2>9 青年学生</h2>
+<h2>9 青年学生性行为</h2>
 <div class="block">
     <div class="row">
-    <h3 style="margin:0 10px 0 0;">9.1 性行为</h3>
-    <label>①确诊前是否发生过性行为：</label>
+    <label><strong>9.1确诊前是否发生过性行为</strong>：</label>
     <div class="item-group">
         <label><input type="radio" name="stuSexHappened" value="否"> 否</label>
         <label><input type="radio" name="stuSexHappened" value="同性性行为"> 同性性行为</label>
@@ -766,19 +775,19 @@
         <label><input type="radio" name="stuSexHappened" value="都有"> 都有</label>
     </div>
 </div>
-    <!-- ②首次性行为年龄 -->
+   
     <div class="row">
-        <label>②首次性行为年龄：</label>
-        <label>同性：</label>
-        <input type="text" name="stuFirstSameAge" maxlength="3" value="/">
-        <span>岁</span>
-        <label>异性：</label>
-        <input type="text" name="stuFirstDiffAge" maxlength="3" value="/">
-        <span>岁</span>
-    </div>
-    <!-- ③首个性伴是 -->
+    <label><strong>9.2首次性行为年龄</strong>：</label>
+    <label>同性：</label>
+    <input type="text" name="stuFirstSameAge" maxlength="3" value="/">
+    <span>岁</span>
+    <label>异性：</label>
+    <input type="text" name="stuFirstDiffAge" maxlength="3" value="/">
+    <span>岁</span>
+</div>
+   
     <div class="row">
-        <label>③首个性伴是：</label>
+        <label><strong>9.3首个性伴是</strong>：</label>
         <label>同性：</label>
         <select name="stuFirstSamePartner">
             <option value="">请选择</option>
@@ -802,9 +811,9 @@
             <option value="不清楚">不清楚</option>
         </select>
     </div>
-    <!-- ④确诊前性伴人数 -->
+    
     <div class="row">
-        <label>④确诊前性伴人数：</label>
+        <label><strong>9.4确诊前性伴人数</strong>：</label>
         <label>同性：</label>
         <input type="text" name="stuSameNum" maxlength="4" value="/">
         <span>人，其中商业性性行为：</span>
@@ -816,10 +825,10 @@
         <input type="text" name="stuDiffBusinessNum" maxlength="4" value="/">
         <span>人</span>
     </div>
-    <!-- ⑤确诊前的性伴有 -->
-    <!-- ⑤确诊前的性伴有（改为多选复选框） -->
+    
+    <!-- 9.5确诊前的性伴有（改为多选复选框） -->
 <div class="row">
-    <label>⑤确诊前的性伴有：</label>
+    <label><strong>9.5确诊前的性伴有</strong>：</label>
     <div style="margin:4px 0;">
         <label>同性：</label>
         <label><input type="checkbox" name="stuSamePartnerType" value="中国籍学生">中国籍学生</label>
@@ -841,80 +850,59 @@
         <label><input type="checkbox" name="stuDiffPartnerType" value="不清楚">不清楚</label>
     </div>
 </div>
-    <!-- ⑥认识性伴的方式 -->
-    <div class="row">
-        <label>⑥认识性伴的方式：</label>
-        <label>同性：</label>
-        <select name="stuSameMeetWay">
-            <option value="">请选择</option>
-            <option value="交友软件(微信、QQ等)">交友软件(微信、QQ等)</option>
-            <option value="线下认识(校园、酒吧、浴池、公园等场所)">线下认识(校园、酒吧、浴池、公园等场所)</option>
-            <option value="两者都有">两者都有</option>
-        </select>
-        <label>异性：</label>
-        <select name="stuDiffMeetWay">
-            <option value="">请选择</option>
-            <option value="交友软件(微信、QQ等)">交友软件(微信、QQ等)</option>
-            <option value="线下认识(校园、酒吧、浴池、公园等场所)">线下认识(校园、酒吧、浴池、公园等场所)</option>
-            <option value="两者都有">两者都有</option>
-        </select>
-    </div>
-    <!-- ⑦认识性伴最主要的方式 -->
-    <div class="row">
-        <label>⑦认识性伴最主要的方式：</label>
-        <label>同性：</label>
-        <select name="stuSameMainWay">
-            <option value="">请选择</option>
-            <option value="交友软件">交友软件</option>
-            <option value="线下认识">线下认识</option>
-        </select>
-        <label>异性：</label>
-        <select name="stuDiffMainWay">
-            <option value="">请选择</option>
-            <option value="交友软件">交友软件</option>
-            <option value="线下认识">线下认识</option>
-        </select>
-    </div>
-    <!-- ⑧确诊前使用安全套 -->
-    <div class="row">
-        <label>⑧确诊前使用安全套：</label>
-        <label>同性：</label>
-        <select name="stuSameCondom">
-            <option value="">请选择</option>
-            <option value="从不使用">从不使用</option>
-            <option value="偶尔使用">偶尔使用</option>
-            <option value="每次都用">每次都用</option>
-        </select>
-        <label>异性：</label>
-        <select name="stuSameCondom">
-            <option value="">请选择</option>
-            <option value="从不使用">从不使用</option>
-            <option value="偶尔使用">偶尔使用</option>
-            <option value="每次都用">每次都用</option>
-        </select>
-    </div>
 
-   <!-- 9.2 吸毒史 -->
 <div class="row">
-    <h3 style="margin:0 10px 0 0;">9.2 吸毒史</h3>
-    <label>确诊前是否使用过成瘾性物质：</label>
-    <select name="stuAddictSub">
+    <label><strong>9.6认识性伴的方式</strong>：</label>
+    <label>同性：</label>
+    <select name="stuSameMeetWay">
         <option value="">请选择</option>
-        <option value="传统毒品(如海洛因、可卡因等)">传统毒品(如海洛因、可卡因等)</option>
-        <option value="新型毒品(如K粉、冰毒等)">新型毒品(如K粉、冰毒等)</option>
-        <option value="零号胶囊">零号胶囊</option>
-        <option value="Rush">Rush</option>
-        <option value="无">无</option>
+        <option value="交友软件(微信、QQ等)">交友软件(微信、QQ等)</option>
+        <option value="线下认识(校园、酒吧、浴池、公园等场所)">线下认识(校园、酒吧、浴池、公园等场所)</option>
+        <option value="两者都有">两者都有</option>
+    </select>
+    <label>异性：</label>
+    <select name="stuDiffMeetWay">
+        <option value="">请选择</option>
+        <option value="交友软件(微信、QQ等)">交友软件(微信、QQ等)</option>
+        <option value="线下认识(校园、酒吧、浴池、公园等场所)">线下认识(校园、酒吧、浴池、公园等场所)</option>
+        <option value="两者都有">两者都有</option>
     </select>
 </div>
 
 <div class="row">
-    <label>调查单位：</label>
-    <input type="text" name="surveyUnit" maxlength="10">
-    <label>调查人：</label>
-    <input type="text" name="surveyUser" maxlength="4">
-    <label>调查日期<span class="required">*</span>：</label>
-    <input type="date" name="surveyDate">
+    <label><strong>9.7认识性伴最主要的方式</strong>：</label>
+    <label>同性：</label>
+    <select name="stuSameMainWay">
+        <option value="">请选择</option>
+        <option value="交友软件">交友软件</option>
+        <option value="线下认识">线下认识</option>
+    </select>
+    <label>异性：</label>
+    <select name="stuDiffMainWay">
+        <option value="">请选择</option>
+        <option value="交友软件">交友软件</option>
+        <option value="线下认识">线下认识</option>
+    </select>
+</div>
+
+<div class="row">
+    <label><strong>9.8确诊前使用安全套</strong>：</label>
+    <label>同性：</label>
+    <select name="stuSameCondom">
+        <option value="">请选择</option>
+        <option value="从不使用">从不使用</option>
+        <option value="偶尔使用">偶尔使用</option>
+        <option value="每次都用">每次都用</option>
+    </select>
+    <label>异性：</label>
+    <!-- 修复name重复问题：改为stuDiffCondom -->
+    <select name="stuDiffCondom">
+        <option value="">请选择</option>
+        <option value="从不使用">从不使用</option>
+        <option value="偶尔使用">偶尔使用</option>
+        <option value="每次都用">每次都用</option>
+    </select>
+</div>
 </div>
 
     <!-- 历史数据弹窗 -->
@@ -1111,7 +1099,7 @@ function exportExcel() {
         "配偶抗体检测","配偶检测年月","近1年性伴数量","性伴是否阳性","有无固定性伴",
         "有无子女","子女检测结果","是否用药","药物名称","是否PEP阻断","PEP药物",
         "是否检测CD4","CD4数值","HIV检测史","末次阴性检测时间","目前吸毒方式","首次吸毒时间","首次注射吸毒时间",
-        "是否共用针具","共用针具人数","配偶是否吸毒","性行为类型","非婚异性人数","肛交人数",
+        "是否共用针具","共用针具人数","成瘾性物质使用","配偶是否吸毒","性行为类型","非婚异性人数","肛交人数",
         "最后一次性接触套情况","末次接触备注","上月异性性行为","从不戴套备注","有时戴套备注","每次都戴备注",
         "半年肛交情况","性病史","受血类别","首次受血时间","首次受血地点","末次受血时间","末次受血地点",
         "术前输血住院","有无供血史","末次全血时间","末次全血地点","末次全血采血单位",
@@ -1136,7 +1124,7 @@ function exportExcel() {
 "同性主要结识方式",
 "异性主要结识方式",
 "同性安全套使用",
-"学生成瘾性物质使用",
+"异性安全套使用",
     ];
     csv += headers.join(",") + "\n";
     const row = [
@@ -1145,7 +1133,7 @@ function exportExcel() {
         data.partnerTest||"", data.partnerTestDate||"", data.partnerNum||"", data.partnerHiv||"", data.fixedPartner||"",
         (data.childHas||[]).join("、"), data.childTest||"", data.useDrug||"", data.drugName||"", data.pep||"", data.pepDrug||"",
         data.cd4||"", data.cd4Num||"", data.stuHivTest || "",data.stuLastNegTime || "",data.drugWay||"", data.firstDrugTime||"", data.firstInjectDrugTime||"",
-        data.shareNeedle||"", data.shareNeedleNum||"", data.partnerDrug||"", (data.sexBehavior||[]).join("、"), data.heteroNum||"", data.analNum||"",
+        data.shareNeedle||"", data.shareNeedleNum||"", data.stuAddictSub || "",data.partnerDrug||"", (data.sexBehavior||[]).join("、"), data.heteroNum||"", data.analNum||"",
         data.lastSex||"", data.lastSexRemark||"", (data.monthHetero||[]).join("、"), data.monthNoCondomRemark||"", data.monthSometimesRemark||"", data.monthAllRemark||"",
         (data.halfYearAnal||[]).join("、"), data.std||"", (data.bloodType||[]).join("、"), data.firstBloodTime||"", data.firstBloodAddr||"", data.lastBloodTime||"", data.lastBloodAddr||"",
         data.bloodHospital||"", data.bloodDonate||"", data.lastWholeBloodTime||"", data.lastWholeBloodAddr||"", data.lastWholeBloodUnit||"",
@@ -1180,8 +1168,8 @@ data.stuDiffMeetWay || "",
 data.stuSameMainWay || "",
 data.stuDiffMainWay || "",
 data.stuSameCondom || "",
-data.stuAddictSub || "",
- ];
+ data.stuDiffCondom || "",
+];
     csv += row.map(s=> `"${String(s).replace(/"/g,'""')}"`).join(",") + "\n";
     const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
     const a = document.createElement("a");
@@ -1211,7 +1199,7 @@ h3 { font-size: 16px; margin: 12px 0 6px; }
 </style>
 </head>
 <body>
-<h1>HIV/AIDS 个案流行病学调查表</h1>
+<h1>HD-Survey</h1>
 
 <h2>1 基本情况</h2>
 <div class="line">1.1 文化程度：<span class="box">${data.culture || ""}</span><br>
@@ -1243,15 +1231,13 @@ h3 { font-size: 16px; margin: 12px 0 6px; }
     <!-- 此处粘贴你原有1.1~1.7全部打印HTML代码 -->
     <div class="line">1.7 检测CD4：○ 否 ○ 是 <span class="box">${data.cd4Num || ""}</span> 个/ul</div>
 
-    <!-- 同大框内追加1.8 -->
     <div style="margin-top:12px;">
-        <h3>1.8 青年学生检测史</h3>
-        <div style="display:flex;align-items:center;flex-wrap:wrap;gap:14px;">
-            <span>确诊前是否做过HIV检测：</span>
-            <span class="box">${data.stuHivTest || ""}</span>
-            <span>最近一次阴性时间：</span>
-            <span class="box">${data.stuLastNegTime || "/"}</span>
-        </div>
+    <h3>1.8 青年学生检测史</h3>
+    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:14px;">
+        <span>确诊前是否做过HIV检测：</span>
+        <span class="box">${data.stuHivTest || ""}</span>
+        <span>最近一次阴性时间：</span>
+        <span class="box">${data.stuLastNegTime || "/"}</span>
     </div>
 </div>
 
@@ -1260,7 +1246,8 @@ h3 { font-size: 16px; margin: 12px 0 6px; }
 目前吸毒方式：<span class="box">${data.drugWay || ""}</span><br>
 首次吸毒时间：<span class="box">${data.firstDrugTime || ""}</span> 首次注射吸毒时间：<span class="box">${data.firstInjectDrugTime || ""}</span><br>
 是否共用针具：${data.shareNeedle || ""} 共用针具人数：<span class="box">${data.shareNeedleNum || ""}</span><br>
-配偶是否吸毒：${data.partnerDrug || ""}
+确诊前是否使用过成瘾性物质：<span class="box">${data.stuAddictSub || ""}</span><br>
+配偶或性伴是否吸毒：${data.partnerDrug || ""}
 </div>
 
 <h3>2.2 性接触史</h3>
@@ -1371,6 +1358,8 @@ h3 { font-size: 16px; margin: 12px 0 6px; }
     <div class="line">认识性伴方式：同性 <span class="box">${data.stuSameMeetWay || ""}</span>，异性 <span class="box">${data.stuDiffMeetWay || ""}</span></div>
     <div class="line">主要结识方式：同性 <span class="box">${data.stuSameMainWay || ""}</span>，异性 <span class="box">${data.stuDiffMainWay || ""}</span></div>
     <div class="line">同性安全套使用情况：<span class="box">${data.stuSameCondom || ""}</span></div>
+    <!-- 新增异性安全套打印行 -->
+    <div class="line">异性安全套使用情况：<span class="box">${data.stuDiffCondom || ""}</span></div>
 
     <div class="row">
         <h3 style="margin:0 10px 0 0;">9.2 吸毒史</h3>
