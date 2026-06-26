@@ -905,6 +905,17 @@
 </div>
 </div>
 
+<div class="row">
+    <label>调查单位：</label>
+    <input type="text" name="surveyUnit" maxlength="10">
+    <label>调查人：</label>
+    <input type="text" name="surveyUser" maxlength="4">
+    <label>调查日期<span class="required">*</span>：</label>
+    <input type="date" name="surveyDate">
+     <label>备注：</label>
+    <input type="text" name="surveyUnit" maxlength="30">
+</div>
+
     <!-- 历史数据弹窗 -->
     <div class="mask" id="historyMask">
         <div class="modal">
@@ -1187,7 +1198,7 @@ function exportWord() {
 <html xmlns:w="urn:schemas-microsoft-com:office:word">
 <head>
 <meta charset="utf-8">
-<title>HIV/AIDS 个案流行病学调查表</title>
+<title>HD-Survey</title>
 <style>
 body { font-family: "宋体"; font-size: 14px; line-height: 2.3; margin: 35px; }
 h1 { text-align: right; font-size: 24px; font-weight: bold; margin-bottom: 30px; }
@@ -1385,7 +1396,7 @@ h3 { font-size: 16px; margin: 12px 0 6px; }
     const blob = new Blob([html], { type: "application/msword" });
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "HIV_AIDS个案流行病学调查表.doc";
+    a.download = "HD-Survey.doc";
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
