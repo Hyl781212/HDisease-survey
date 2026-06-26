@@ -428,14 +428,14 @@
         </div>
     </div>
     <div class="row">
-        <label>半年内肛交(可多选)：</label>
-        <div class="item-group">
-            <label><input type="checkbox" name="halfYearAnal" value="无"> 无</label>
-            <label><input type="checkbox" name="halfYearAnal" value="从不戴套"> 从不戴套</label>
-            <label><input type="checkbox" name="halfYearAnal" value="有时戴"> 有时戴</label>
-            <label><input type="checkbox" name="halfYearAnal" value="每次都戴"> 每次都戴</label>
-        </div>
+    <label>半年内肛交(单选)：</label>
+    <div class="item-group">
+        <label><input type="radio" name="halfYearAnal" value="无"> 无</label>
+        <label><input type="radio" name="halfYearAnal" value="从不戴套"> 从不戴套</label>
+        <label><input type="radio" name="halfYearAnal" value="有时戴"> 有时戴</label>
+        <label><input type="radio" name="halfYearAnal" value="每次都戴"> 每次都戴</label>
     </div>
+</div>
     <div class="row">
         <label>性病史：</label>
         <div class="item-group radio-std">
@@ -554,7 +554,7 @@
             <label><input type="radio" name="motherHiv" value="阳性已治疗"> 阳性已治疗</label>
             <label><input type="radio" name="motherHiv" value="阳性未治疗"> 阳性未治疗</label>
         </div>
-        <input type="text" name="motherCardId" maxlength="10" placeholder="注明病例报告卡号">
+        <input type="text" name="motherCardId" maxlength="19" placeholder="注明病例报告卡号">
     </div>
     <div class="row">
         <label>喂养方式：</label>
@@ -1185,7 +1185,7 @@ data.stuSameCondom || "",
     const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
     const a = document.createElement("a");
     a.href = URL.createObjectURL(blob);
-    a.download = "HIV个案调查表.csv";
+    a.download = "HD-Survey.csv";
     a.click();
     URL.revokeObjectURL(a.href);
 }
