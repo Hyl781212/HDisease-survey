@@ -184,7 +184,7 @@
 <div class="btn-bar">
     <button id="btnSave">保存本条</button>
     <button id="btnExportExcel">导出Excel</button>
-    <button id="btnExportWord" onclick="window.print()">导出Word</button>
+    <button id="btnExportWord" onclick="window.print()">打印Word</button>
     <button id="btnImport">导入数据</button>
     <input type="file" id="fileInput" accept=".csv" style="display:none;">
     <button id="btnHistory">历史数据</button>
@@ -338,9 +338,9 @@
             <label><input type="radio" name="stuHivTest" value="否"> 否</label>
             <label><input type="radio" name="stuHivTest" value="是"> 是</label>
         </div>
-        <label>最近一次检测阴性时间：</label>
-        <input type="text" name="stuLastNegTime" maxlength="9" value="/">
-    </div>
+         <label>最近一次检测阴性时间：</label>
+    <!-- 完整年月日时间选择框 type="date" -->
+    <input type="date" name="stuLastNegTime">
 </div>
 
 <h2>2. 高危行为和因素</h2>
@@ -581,39 +581,48 @@
 </div>
 
  <h2>3. 临床表现</h2>
-    <div class="block">
-      <div style="display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:16px;">
+    <div style="border:1px solid #000; padding:12px;">
+    <div style="display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:16px;">
     <span style="font-weight:bold;font-size:14px;">3.1 目前症状(可多选)：</span>
-            <label><input type="checkbox" name="symptomList" value="原因不明持续不规则低热多于1个月"> 原因不明持续不规则低热多于1个月</label>
-            <label><input type="checkbox" name="symptomList" value="原因不明的持续全身淋巴结肿大多于1个月"> 原因不明的持续全身淋巴结肿大多于1个月</label>
-            <label><input type="checkbox" name="symptomList" value="慢性腹泻多于3～5次/日，3个月内体重下降>10%"> 慢性腹泻多于3～5次/日，3个月内体重下降>10%</label>
-            <label><input type="checkbox" name="symptomList" value="口腔或内脏的念珠菌感染"> 口腔或内脏的念珠菌感染</label>
-            <label><input type="checkbox" name="symptomList" value="卡氏肺孢子虫肺炎"> 卡氏肺孢子虫肺炎</label>
-            <label><input type="checkbox" name="symptomList" value="巨细胞病毒感染"> 巨细胞病毒感染</label>
-            <label><input type="checkbox" name="symptomList" value="弓形虫脑病"> 弓形虫脑病</label>
-            <label><input type="checkbox" name="symptomList" value="新型隐球菌脑膜炎或隐球菌肺炎"> 新型隐球菌脑膜炎或隐球菌肺炎</label>
-            <label><input type="checkbox" name="symptomList" value="青霉菌感染"> 青霉菌感染</label>
-            <label><input type="checkbox" name="symptomList" value="败血症"> 败血症</label>
-            <label><input type="checkbox" name="symptomList" value="反复发生的细菌性肺炎"> 反复发生的细菌性肺炎</label>
-            <label><input type="checkbox" name="symptomList" value="皮肤粘膜或内脏的Kaposi肉瘤"> 皮肤粘膜或内脏的Kaposi肉瘤</label>
-            <label><input type="checkbox" name="symptomList" value="淋巴瘤"> 淋巴瘤</label>
-            <label><input type="checkbox" name="symptomList" value="活动性结核病或非结核分枝杆菌病"> 活动性结核病或非结核分枝杆菌病</label>
-            <label><input type="checkbox" name="symptomList" value="反复发作的疱疹病毒感染"> 反复发作的疱疹病毒感染</label>
-            <label><input type="checkbox" name="symptomList" value="中青年痴呆症"> 中青年痴呆症</label>
-            <label><input type="checkbox" name="symptomList" value="未有上述症"> 未有上述症</label>
-            <label><input type="checkbox" name="symptomList" value="其他"> 其他</label>
-            <input type="text" name="symptomOther" maxlength="10" placeholder="请注明">
-        </div>
-        <div class="row">
-            <label><span class="bold-text">3.2 诊断前有无相关症状：</label>
-            <div class="item-group radio-symptom-history">
-                <label><input type="radio" name="symptomHistory" value="未发现"> 未发现</label>
-                <label><input type="radio" name="symptomHistory" value="1年前出现过"> 1年前出现过</label>
-                <label><input type="radio" name="symptomHistory" value="1年内出现过"> 1年内出现过</label>
-            </div>
-        </div>
-    </div>
+    <label><input type="checkbox" name="symptomList" value="原因不明持续不规则低热多于1个月"> 原因不明持续不规则低热多于1个月</label>
+    <label><input type="checkbox" name="symptomList" value="原因不明的持续全身淋巴结肿大多于1个月"> 原因不明的持续全身淋巴结肿大多于1个月</label>
+    <label><input type="checkbox" name="symptomList" value="慢性腹泻多于3～5次/日，3个月内体重下降>10%"> 慢性腹泻多于3～5次/日，3个月内体重下降>10%</label>
+    <label><input type="checkbox" name="symptomList" value="口腔或内脏的念珠菌感染"> 口腔或内脏的念珠菌感染</label>
+    <label><input type="checkbox" name="symptomList" value="卡氏肺孢子虫肺炎"> 卡氏肺孢子虫肺炎</label>
+    <label><input type="checkbox" name="symptomList" value="巨细胞病毒感染"> 巨细胞病毒感染</label>
+    <label><input type="checkbox" name="symptomList" value="弓形虫脑病"> 弓形虫脑病</label>
+    <label><input type="checkbox" name="symptomList" value="新型隐球菌脑膜炎或隐球菌肺炎"> 新型隐球菌脑膜炎或隐球菌肺炎</label>
+    <label><input type="checkbox" name="symptomList" value="青霉菌感染"> 青霉菌感染</label>
+    <label><input type="checkbox" name="symptomList" value="败血症"> 败血症</label>
+    <label><input type="checkbox" name="symptomList" value="反复发生的细菌性肺炎"> 反复发生的细菌性肺炎</label>
+    <label><input type="checkbox" name="symptomList" value="皮肤粘膜或内脏的Kaposi肉瘤"> 皮肤粘膜或内脏的Kaposi肉瘤</label>
+    <label><input type="checkbox" name="symptomList" value="淋巴瘤"> 淋巴瘤</label>
+    <label><input type="checkbox" name="symptomList" value="活动性结核病或非结核分枝杆菌病"> 活动性结核病或非结核分枝杆菌病</label>
+    <label><input type="checkbox" name="symptomList" value="反复发作的疱疹病毒感染"> 反复发作的疱疹病毒感染</label>
+    <label><input type="checkbox" name="symptomList" value="中青年痴呆症"> 中青年痴呆症</label>
+    <label><input type="checkbox" name="symptomList" value="未有上述症"> 未有上述症</label>
+    <label><input type="checkbox" name="symptomList" value="其他"> 其他</label>
+    <input type="text" name="symptomOther" maxlength="10" placeholder="请注明">
+</div>
 
+<div class="row">
+    <label><span class="bold-text">3.2 诊断前有无相关症状：</span>
+    <div class="item-group radio-symptom-history">
+        <label><input type="radio" name="symptomHistory" value="未发现"> 未发现</label>
+        <label><input type="radio" name="symptomHistory" value="1年前出现过"> 1年前出现过</label>
+        <label><input type="radio" name="symptomHistory" value="1年内出现过"> 1年内出现过</label>
+    </div>
+</div>
+
+<!-- 【新增】3.3 密接有无相关症状，和3.2结构完全一致，风格统一 -->
+<div class="row">
+    <label><span class="bold-text">3.3 密接有无相关症状：</span>
+    <div class="item-group radio-close-contact-symptom">
+        <label><input type="radio" name="closeContactSymptom" value="是"> 是</label>
+        <label><input type="radio" name="closeContactSymptom" value="否"> 否</label>
+    </div>
+</div>
+ </div>
 
     <h2>4. 人群类别<span class="required">*</span></h2>
     <div class="block">
@@ -771,30 +780,31 @@
     <div id="contactBox"></div>
 </div>
 
-<h2>9 青年学生性行为</h2>
+<h2>9 青年学生</h2>
 <div class="block">
     <div class="row">
-    <label><strong>9.1确诊前是否发生过性行为</strong>：</label>
-    <div class="item-group">
-        <label><input type="radio" name="stuSexHappened" value="否"> 否</label>
-        <label><input type="radio" name="stuSexHappened" value="同性性行为"> 同性性行为</label>
-        <label><input type="radio" name="stuSexHappened" value="异性性行为"> 异性性行为</label>
-        <label><input type="radio" name="stuSexHappened" value="都有"> 都有</label>
+        <label><strong>9.1性行为</strong>：</label>
+        <label><strong>①确诊前是否发生过性行为</strong>：</label>
+        <div class="item-group">
+            <label><input type="radio" name="stuSexHappened" value="否"> 否</label>
+            <label><input type="radio" name="stuSexHappened" value="同性性行为"> 同性性行为</label>
+            <label><input type="radio" name="stuSexHappened" value="异性性行为"> 异性性行为</label>
+            <label><input type="radio" name="stuSexHappened" value="都有"> 都有</label>
+        </div>
     </div>
-</div>
    
     <div class="row">
-    <label><strong>9.2首次性行为年龄</strong>：</label>
-    <label>同性：</label>
-    <input type="text" name="stuFirstSameAge" maxlength="3" value="/">
-    <span>岁</span>
-    <label>异性：</label>
-    <input type="text" name="stuFirstDiffAge" maxlength="3" value="/">
-    <span>岁</span>
-</div>
+        <label><strong>②首次性行为年龄</strong>：</label>
+        <label>同性：</label>
+        <input type="text" name="stuFirstSameAge" maxlength="3" value="/">
+        <span>岁</span>
+        <label>异性：</label>
+        <input type="text" name="stuFirstDiffAge" maxlength="3" value="/">
+        <span>岁</span>
+    </div>
    
     <div class="row">
-        <label><strong>9.3首个性伴是</strong>：</label>
+        <label><strong>③首个性伴是</strong>：</label>
         <label>同性：</label>
         <select name="stuFirstSamePartner">
             <option value="">请选择</option>
@@ -820,7 +830,7 @@
     </div>
     
     <div class="row">
-        <label><strong>9.4确诊前性伴人数</strong>：</label>
+        <label><strong>④确诊前性伴人数</strong>：</label>
         <label>同性：</label>
         <input type="text" name="stuSameNum" maxlength="4" value="/">
         <span>人，其中商业性性行为：</span>
@@ -833,81 +843,115 @@
         <span>人</span>
     </div>
     
-    <!-- 9.5确诊前的性伴有（改为多选复选框） -->
-<div class="row">
-    <label><strong>9.5确诊前的性伴有</strong>：</label>
-    <div style="margin:4px 0;">
-        <label>同性：</label>
-        <label><input type="checkbox" name="stuSamePartnerType" value="中国籍学生">中国籍学生</label>
-        <label><input type="checkbox" name="stuSamePartnerType" value="中国籍老师">中国籍老师</label>
-        <label><input type="checkbox" name="stuSamePartnerType" value="中国籍其他">中国籍其他</label>
-        <label><input type="checkbox" name="stuSamePartnerType" value="外籍学生">外籍学生</label>
-        <label><input type="checkbox" name="stuSamePartnerType" value="外籍老师">外籍老师</label>
-        <label><input type="checkbox" name="stuSamePartnerType" value="外籍其他">外籍其他</label>
+    <!-- ⑤：标题和同性同行，中间无空白间隔 -->
+    <div class="row">
+        <label><strong>⑤确诊前的性伴有：</strong></label>
+        <!-- 同性行：文字紧贴第一个复选框，无空隙 -->
+        <span style="display:inline-block;width:60px;text-align:right;">同性：</span><label><input type="checkbox" name="stuSamePartnerType" value="中国籍学生">中国籍学生</label>&nbsp;&nbsp;
+        <label><input type="checkbox" name="stuSamePartnerType" value="中国籍老师">中国籍老师</label>&nbsp;&nbsp;
+        <label><input type="checkbox" name="stuSamePartnerType" value="中国籍其他">中国籍其他</label>&nbsp;&nbsp;
+        <label><input type="checkbox" name="stuSamePartnerType" value="外籍学生">外籍学生</label>&nbsp;&nbsp;
+        <label><input type="checkbox" name="stuSamePartnerType" value="外籍老师">外籍老师</label>&nbsp;&nbsp;
+        <label><input type="checkbox" name="stuSamePartnerType" value="外籍其他">外籍其他</label>&nbsp;&nbsp;
         <label><input type="checkbox" name="stuSamePartnerType" value="不清楚">不清楚</label>
+        <div style="margin:4px 0;">
+            <!-- 异性行，和同性左对齐，紧贴复选框 -->
+            <span style="display:inline-block;width:60px;text-align:right;">异性：</span><label><input type="checkbox" name="stuDiffPartnerType" value="中国籍学生">中国籍学生</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="stuDiffPartnerType" value="中国籍老师">中国籍老师</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="stuDiffPartnerType" value="中国籍其他">中国籍其他</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="stuDiffPartnerType" value="外籍学生">外籍学生</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="stuDiffPartnerType" value="外籍老师">外籍老师</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="stuDiffPartnerType" value="外籍其他">外籍其他</label>&nbsp;&nbsp;
+            <label><input type="checkbox" name="stuDiffPartnerType" value="不清楚">不清楚</label>
+        </div>
     </div>
-    <div style="margin:4px 0;">
+
+    <div class="row">
+        <label><strong>⑥认识性伴的方式</strong>：</label>
+        <label>同性：</label>
+        <select name="stuSameMeetWay">
+            <option value="">请选择</option>
+            <option value="交友软件(微信、QQ等)">交友软件(微信、QQ等)</option>
+            <option value="线下认识(校园、酒吧、浴池、公园等场所)">线下认识(校园、酒吧、浴池、公园等场所)</option>
+            <option value="两者都有">两者都有</option>
+        </select>
         <label>异性：</label>
-        <label><input type="checkbox" name="stuDiffPartnerType" value="中国籍学生">中国籍学生</label>
-        <label><input type="checkbox" name="stuDiffPartnerType" value="中国籍老师">中国籍老师</label>
-        <label><input type="checkbox" name="stuDiffPartnerType" value="中国籍其他">中国籍其他</label>
-        <label><input type="checkbox" name="stuDiffPartnerType" value="外籍学生">外籍学生</label>
-        <label><input type="checkbox" name="stuDiffPartnerType" value="外籍老师">外籍老师</label>
-        <label><input type="checkbox" name="stuDiffPartnerType" value="外籍其他">外籍其他</label>
-        <label><input type="checkbox" name="stuDiffPartnerType" value="不清楚">不清楚</label>
+        <select name="stuDiffMeetWay">
+            <option value="">请选择</option>
+            <option value="交友软件(微信、QQ等)">交友软件(微信、QQ等)</option>
+            <option value="线下认识(校园、酒吧、浴池、公园等场所)">线下认识(校园、酒吧、浴池、公园等场所)</option>
+            <option value="两者都有">两者都有</option>
+        </select>
     </div>
-</div>
 
-<div class="row">
-    <label><strong>9.6认识性伴的方式</strong>：</label>
-    <label>同性：</label>
-    <select name="stuSameMeetWay">
-        <option value="">请选择</option>
-        <option value="交友软件(微信、QQ等)">交友软件(微信、QQ等)</option>
-        <option value="线下认识(校园、酒吧、浴池、公园等场所)">线下认识(校园、酒吧、浴池、公园等场所)</option>
-        <option value="两者都有">两者都有</option>
-    </select>
-    <label>异性：</label>
-    <select name="stuDiffMeetWay">
-        <option value="">请选择</option>
-        <option value="交友软件(微信、QQ等)">交友软件(微信、QQ等)</option>
-        <option value="线下认识(校园、酒吧、浴池、公园等场所)">线下认识(校园、酒吧、浴池、公园等场所)</option>
-        <option value="两者都有">两者都有</option>
-    </select>
-</div>
+    <div class="row">
+        <label><strong>⑦认识性伴最主要的方式</strong>：</label>
+        <label>同性：</label>
+        <select name="stuSameMainWay">
+            <option value="">请选择</option>
+            <option value="交友软件">交友软件</option>
+            <option value="线下认识">线下认识</option>
+        </select>
+        <label>异性：</label>
+        <select name="stuDiffMainWay">
+            <option value="">请选择</option>
+            <option value="交友软件">交友软件</option>
+            <option value="线下认识">线下认识</option>
+        </select>
+    </div>
 
-<div class="row">
-    <label><strong>9.7认识性伴最主要的方式</strong>：</label>
-    <label>同性：</label>
-    <select name="stuSameMainWay">
-        <option value="">请选择</option>
-        <option value="交友软件">交友软件</option>
-        <option value="线下认识">线下认识</option>
-    </select>
-    <label>异性：</label>
-    <select name="stuDiffMainWay">
-        <option value="">请选择</option>
-        <option value="交友软件">交友软件</option>
-        <option value="线下认识">线下认识</option>
-    </select>
-</div>
+    <div class="row">
+        <label><strong>⑧确诊前使用安全套</strong>：</label>
+        <label>同性：</label>
+        <select name="stuSameCondom">
+            <option value="">请选择</option>
+            <option value="从不使用">从不使用</option>
+            <option value="偶尔使用">偶尔使用</option>
+            <option value="每次都用">每次都用</option>
+        </select>
+        <label>异性：</label>
+        <select name="stuDiffCondom">
+            <option value="">请选择</option>
+            <option value="从不使用">从不使用</option>
+            <option value="偶尔使用">偶尔使用</option>
+            <option value="每次都用">每次都用</option>
+        </select>
+    </div>
 
-<div class="row">
-    <label><strong>9.8确诊前使用安全套</strong>：</label>
-    <label>同性：</label>
-    <select name="stuSameCondom">
+   <div class="row">
+    <label><span class="bold-text">9.2 学校类型：</span>
+    <select name="stuSchoolType">
         <option value="">请选择</option>
-        <option value="从不使用">从不使用</option>
-        <option value="偶尔使用">偶尔使用</option>
-        <option value="每次都用">每次都用</option>
+        <option value="初中">初中</option>
+        <option value="高中">高中</option>
+        <option value="中专">中专</option>
+        <option value="技校">技校</option>
+        <option value="职高">职高</option>
+        <option value="大专">大专</option>
+        <option value="大学">大学</option>
+        <option value="科研院校">科研院校</option>
+        <option value="其他">其他</option>
     </select>
-    <label>异性：</label>
-    <!-- 修复name重复问题：改为stuDiffCondom -->
-    <select name="stuDiffCondom">
+    <input type="text" name="stuSchoolOther" maxlength="10" placeholder="其他请注明">
+
+    <!-- 新增在校情况下拉+输入框 -->
+    <label style="margin-left:15px;">在校情况：</label>
+    <select name="stuSchoolStatus">
         <option value="">请选择</option>
-        <option value="从不使用">从不使用</option>
-        <option value="偶尔使用">偶尔使用</option>
-        <option value="每次都用">每次都用</option>
+        <option value="在读">在读</option>
+        <option value="休学">休学</option>
+        <option value="已毕业">已毕业</option>
+        <option value="其他">其他</option>
+    </select>
+    <input type="text" name="stuSchoolStatusOther" maxlength="8" value="/">
+
+    <label style="margin-left:15px;">现住址居住时间(住校时间)：</label>
+    <select name="stuLiveTime">
+        <option value="">请选择</option>
+        <option value="<6个月">&lt;6个月</option>
+        <option value="6-12个月">6-12个月</option>
+        <option value="1-2年">1-2年</option>
+        <option value=">2年">&gt;2年</option>
     </select>
 </div>
 </div>
@@ -940,7 +984,7 @@ function collectFormData() {
     // 先获取所有基础数据
     const data = {};
 
-    // 1. 收集所有input/select的基础数据（原有逻辑保留）
+    // 1. 收集所有普通input/select基础数据
     document.querySelectorAll('input[name], select[name]').forEach(el => {
         if (el.type === 'radio' || el.type === 'checkbox') {
             if (el.checked) {
@@ -952,14 +996,46 @@ function collectFormData() {
         }
     });
 
-    // 2. 【重点】新增首次全血3个字段的强制收集，避免遗漏
+    // 2. 供血史-首次全血强制收集
     data.firstWholeBloodTime = document.querySelector('input[name="firstWholeBloodTime"]')?.value || "";
     data.firstWholeBloodAddr = document.querySelector('input[name="firstWholeBloodAddr"]')?.value || "";
     data.firstWholeBloodUnit = document.querySelector('input[name="firstWholeBloodUnit"]')?.value || "";
 
-    // 3. 原有其他字段收集（被调查人、其他模块等，原有逻辑保留）
+    // 3. 3.3密接有无相关症状单选收集
+    data.closeContactSymptom = document.querySelector('input[name="closeContactSymptom"]:checked')?.value || "";
+
+    // 4. 青年学生9.2新增字段收集
+    data.stuSchoolType = document.querySelector('select[name="stuSchoolType"]')?.value || "";
+    data.stuSchoolOther = document.querySelector('input[name="stuSchoolOther"]')?.value || "";
+    data.stuLiveTime = document.querySelector('select[name="stuLiveTime"]')?.value || "";
+    data.stuSchoolStatus = document.querySelector('select[name="stuSchoolStatus"]')?.value || "";
+    data.stuSchoolStatusOther = document.querySelector('input[name="stuSchoolStatusOther"]')?.value || "";
+
+    // 5. 主表单姓名
     data.investigateeName = document.getElementById('investigateeName')?.value || "";
-    // ... 你原有其他字段的收集代码全部保留 ...
+
+    // 6. 多条接触者批量收集数组
+    const contactArr = [];
+    document.querySelectorAll(".contact-line").forEach((block, idx) => {
+        const i = idx;
+        const contactObj = {
+            contactType: block.querySelector(`input[name="contactType${i}"]:checked`)?.value || "",
+            name: block.querySelector(`input[name="contactName${i}"]`)?.value || "",
+            sex: block.querySelector(`input[name="contactSex${i}"]`)?.value || "",
+            age: block.querySelector(`input[name="contactAge${i}"]`)?.value || "",
+            tel: block.querySelector(`input[name="contactTel${i}"]`)?.value || "",
+            social: block.querySelector(`input[name="contactSocial${i}"]`)?.value || "",
+            addr: block.querySelector(`input[name="contactAddr${i}"]`)?.value || "",
+            exposeAddr: block.querySelector(`input[name="contactExposeAddr${i}"]`)?.value || "",
+            lastRisk: block.querySelector(`input[name="contactLastRisk${i}"]`)?.value || "",
+            notifyType: block.querySelector(`input[name="notify${i}"]:checked`)?.value || "",
+            notifyRemark: block.querySelector(`input[name="notifyRemark${i}"]`)?.value || "",
+            trackResult: block.querySelector(`input[name="track${i}"]:checked`)?.value || "",
+            trackCardId: block.querySelector(`input[name="trackCardId${i}"]`)?.value || ""
+        };
+        contactArr.push(contactObj);
+    });
+    data.contactList = contactArr;
 
     return data;
 }
@@ -1030,13 +1106,14 @@ function createContactLine() {
 <div class="row">        
     <div style="display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:16px;">
         <span style="font-weight:bold;font-size:14px;">③居住地：</span>
-                <input type="text" name="contactAddr${i}" maxlength="30">
-                <label>暴露地：</label>
-                <input type="text" name="contactExposeAddr${i}" maxlength="30">
-                <label>末次高危行为：</label>
-                <input type="text" name="contactLastRisk${i}" maxlength="6" placeholder="*年*月">
-            </div>
-            <div class="row">
+        <input type="text" name="contactAddr${i}" maxlength="30">
+        <label>暴露地：</label>
+        <input type="text" name="contactExposeAddr${i}" maxlength="30">
+        <label>末次高危行为：</label>
+        <!-- 改为年月选择框 -->
+        <input type="month" name="contactLastRisk${i}">
+    </div>
+</div>
 
 <div class="row">
     <div class="radio-group" style="display:flex;align-items:center;flex-wrap:wrap;gap:14px;margin-bottom:16px;">
@@ -1063,7 +1140,7 @@ function createContactLine() {
     <input type="text" name="trackCardId${i}" maxlength="16" placeholder="注明报告卡ID">
 </div>
 `;
-box.appendChild(line);
+        box.appendChild(line);
     }
 }
 
@@ -1076,7 +1153,7 @@ function saveCurrentItem() {
     alert("保存成功！可打开历史数据查看");
 }
 
-// ========== 修正后完整导出Excel CSV ==========
+// ========== 最终完整导出Excel CSV ==========
 function exportExcel() {
     const data = collectFormData();
     let csv = "\uFEFF"; // 解决Excel中文乱码
@@ -1090,15 +1167,15 @@ function exportExcel() {
         "最后一次性接触套情况","末次接触备注","上月异性性行为","从不戴套备注","有时戴套备注","每次都戴备注",
         "半年肛交情况","性病史","受血类别","首次受血时间","首次受血地点","末次受血时间","末次受血地点",
         "术前输血住院","有无供血史",
-        // 【重点】首次全血3个字段，必须放在headers里，顺序固定
         "首次全血时间","首次全血地点","首次全血采血单位",
-        // 末次全血3个字段，紧跟在首次后面，顺序对应
         "末次全血时间","末次全血地点","末次全血采血单位",
-        // 原有血浆字段，顺序不变
         "首次血浆时间","首次血浆地点","首次血浆单位","末次血浆时间","末次血浆地点","末次血浆单位",
         "暴露来源","暴露其他说明","暴露级别","是否药物阻断","阻断药名称",
         "患儿母亲状态","患儿病例卡号","喂养方式","母婴阻断治疗","临床症状","症状其他说明",
-        "既往有无症状","人群类别","人群其他说明","样本来源","样本其他说明",
+        "既往有无症状",
+        // 【新增】3.3 密接有无相关症状，和表单顺序完全一致
+        "3.3密接有无相关症状",
+        "人群类别","人群其他说明","样本来源","样本其他说明",
         "感染途径","途径其他说明","感染时间推断","感染地点推断",
         "接触人数","被调查人配偶或性伴","配偶性别","配偶年龄","接触方式","居住地","暴露地","末次高危行为时间","备注","调查单位","调查人","调查日期","创建时间戳",
         "9青年学生-是否发生性行为",
@@ -1118,10 +1195,16 @@ function exportExcel() {
         "异性主要结识方式",
         "同性安全套使用",
         "异性安全套使用",
-    ];
+         // 【新增】9.2 学校类型、在校情况、住校时长相关5个字段，和表单顺序完全对应
+    "9.2学校类型",
+    "学校类型其他说明",
+    "在校情况",
+    "在校情况其他说明",
+    "现住址居住时间(住校时间)",
+];
     csv += headers.join(",") + "\n";
 
-    // 【重点】row数组的顺序，必须和headers完全一一对应，不能错位
+    // 【重点】row数组顺序和headers完全一一对应，无错位
     const row = [
         data.investigateeName || "",
         data.culture||"", data.job||"", data.jobOther||"", data.workUnit||"", data.marry||"",
@@ -1131,18 +1214,14 @@ function exportExcel() {
         data.shareNeedle||"", data.shareNeedleNum||"", data.stuAddictSub || "",data.partnerDrug||"", (data.sexBehavior||[]).join("、"), data.heteroNum||"", data.analNum||"",
         data.lastSex||"", data.lastSexRemark||"", (data.monthHetero||[]).join("、"), data.monthNoCondomRemark||"", data.monthSometimesRemark||"", data.monthAllRemark||"",
         (data.halfYearAnal||[]).join("、"), data.std||"", (data.bloodType||[]).join("、"), data.firstBloodTime||"", data.firstBloodAddr||"", data.lastBloodTime||"", data.lastBloodAddr||"",
-        // 术前输血住院、有无供血史
         data.bloodHospital||"", 
         data.bloodDonate||"", 
-        // 【重点】首次全血3个字段，必须和headers顺序完全一致
         data.firstWholeBloodTime||"", 
         data.firstWholeBloodAddr||"", 
         data.firstWholeBloodUnit||"", 
-        // 末次全血3个字段，紧跟在首次后面，顺序对应
         data.lastWholeBloodTime||"",  
         data.lastWholeBloodAddr||"",  
         data.lastWholeBloodUnit||"",  
-        // 原有血浆字段，顺序不变
         data.firstPlasmaTime||"", 
         data.firstPlasmaAddr||"", 
         data.firstPlasmaUnit||"", 
@@ -1151,7 +1230,10 @@ function exportExcel() {
         data.lastPlasmaUnit||"",
         data.exposeSrc||"", data.exposeSrcOther||"", data.exposeLevel||"", data.blockDrug||"", data.blockDrugName||"",
         data.motherHiv||"", data.motherCardId||"", data.feed||"", data.babyBlock||"", (data.symptomList||[]).join("、"), data.symptomOther||"",
-        data.symptomHistory||"", data.crowd||"", data.crowdOther||"", data.sample||"", data.sampleOther||"",
+        data.symptomHistory||"",
+        // 【新增】3.3 密接有无相关症状，和headers位置完全对应
+        data.closeContactSymptom || "",
+        data.crowd||"", data.crowdOther||"", data.sample||"", data.sampleOther||"",
         data.infectWay||"", data.infectWayOther||"", data.infectTime||"", data.infectArea||"",
         data.contactCount||"",
         data.partnerName || "",
@@ -1180,10 +1262,16 @@ function exportExcel() {
         data.stuDiffMainWay || "",
         data.stuSameCondom || "",
         data.stuDiffCondom || "",
+        // 【新增】9.2 学校类型相关3个字段，和headers位置完全对应
+       data.stuSchoolType || "",
+       data.stuSchoolOther || "",
+       data.stuSchoolStatus || "",
+       data.stuSchoolStatusOther || "",
+       data.stuLiveTime || "",
     ];
 
-    // 处理CSV格式，解决逗号、引号问题
-    csv += row.map(s=> `"${String(s).replace(/"/g,'""')}"`).join(",") + "\n";
+    // 处理CSV格式，解决逗号、引号、换行问题
+    csv += row.map(s=> `"${String(s).replace(/"/g,'""').replace(/\n/g,'\\n')}"`).join(",") + "\n";
     
     // 生成并下载文件
     const blob = new Blob([csv], {type:"text/csv;charset=utf-8"});
@@ -1194,7 +1282,7 @@ function exportExcel() {
     URL.revokeObjectURL(a.href);
 }
 
-// ========== 导出Word ==========
+// ========== 打印Word ==========
 function exportWord() {
     const data = collectFormData();
     const arrToStr = (arr) => Array.isArray(arr) ? arr.join("、") : "";
@@ -1288,7 +1376,7 @@ h3 { font-size: 16px; margin: 12px 0 6px; }
 
 <h3>2.4 供血(浆)史</h3>
 <div class="line">有无供血(浆)史：<span class="box">${data.bloodDonate || ""}</span><br>
-首次全血时间：<span class="box">${data.lastWholeBloodTime || ""}</span> 地点：<span class="box">${data.lastWholeBloodAddr || ""}</span> 采血单位：<span class="box">${data.lastWholeBloodUnit || ""}</span><br>
+首次全血时间：<span class="box">${data.firstWholeBloodTime || ""}</span> 地点：<span class="box">${data.firstWholeBloodAddr || ""}</span> 采血单位：<span class="box">${data.firstWholeBloodUnit || ""}</span><br>
 末次全血时间：<span class="box">${data.lastWholeBloodTime || ""}</span> 地点：<span class="box">${data.lastWholeBloodAddr || ""}</span> 采血单位：<span class="box">${data.lastWholeBloodUnit || ""}</span><br>
 首次血浆时间：<span class="box">${data.firstPlasmaTime || ""}</span> 地点：<span class="box">${data.firstPlasmaAddr || ""}</span> 采血单位：<span class="box">${data.firstPlasmaUnit || ""}</span><br>
 末次血浆时间：<span class="box">${data.lastPlasmaTime || ""}</span> 地点：<span class="box">${data.lastPlasmaAddr || ""}</span> 采血单位：<span class="box">${data.lastPlasmaUnit || ""}</span></div>
@@ -1303,8 +1391,12 @@ h3 { font-size: 16px; margin: 12px 0 6px; }
 患儿是否接受母婴阻断药物治疗：<span class="box">${data.babyBlock || ""}</span></div>
 
 <h2>3 临床症状</h2>
-<div class="line">目前症状(可多选)：${arrToStr(data.symptomList)} 其他说明：<span class="box">${data.symptomOther || ""}</span><br>
-既往有无相关症状：<span class="box">${data.symptomHistory || ""}</span></div>
+<!-- 新增外层边框，包裹3.1~3.3全部内容 -->
+<div style="border:1px solid #000; padding:12px;">
+    <div class="line">3.1 目前症状(可多选)：${arrToStr(data.symptomList)} 其他说明：<span class="box">${data.symptomOther || ""}</span></div>
+    <div class="line">3.2 既往有无相关症状：<span class="box">${data.symptomHistory || ""}</span></div>
+    <div class="line">3.3 密接有无相关症状：<span class="box">${data.closeContactSymptom || ""}</span></div>
+</div>
 
 <h2>4 人群类别</h2>
 <div class="line">人群类别：<span class="box">${data.crowd || ""}</span> 其他说明：<span class="box">${data.crowdOther || ""}</span></div>
