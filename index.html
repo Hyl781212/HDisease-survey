@@ -197,10 +197,13 @@
     <h2 style="margin:0;">1. 基本情况</h2>
     <div style="display:flex;align-items:center;gap:8px;">
         <label class="bold-text">被调查人：</label>
-        <!-- 页面展示输入框 -->
-        <input type="text" id="showName" maxlength="6" placeholder="姓名第二个字用*号表示，如张*华" style="width:260px;padding:3px 6px;border:1px solid #666;">
-        <!-- 隐藏框：存完整真实姓名，导出/保存读取这个 -->
-        <input type="hidden" id="investigateeName" name="investigateeName">
+        <!-- 输入框：ID/name和原采集函数完全一致，绝不改ID -->
+        <input type="text" 
+               id="investigateeName" 
+               name="investigateeName" 
+               maxlength="6" 
+               placeholder="姓名第二个字用*号表示，如张*华" 
+               style="width:260px;padding:3px 6px;border:1px solid #666;">
     </div>
 </div>
 
@@ -1620,27 +1623,27 @@ window.addEventListener("load", function(){
     document.getElementById("btnClear").addEventListener("click", clearAllForm);
 });
 
-// 姓名：输完失焦再脱敏，保存导出保留完整姓名
-const showInput = document.getElementById("showName");
-const realInput = document.getElementById("investigateeName");
+// 姓名：输完失焦再脱敏，导出保留完整真实姓名
+const nameInput = document.getElementById("investigateeName");
 
-// 打字时实时保存完整原名
-showInput.addEventListener("input", function(){
-    realInput.value = this.value;
+// 1. 打字时：实时把完整原始姓名存在输入框的自定义属性里（导出读这里）
+nameInput.addEventListener("input", function() {
+    this.dataset.realName = this.value;
 });
 
-// 离开输入框才替换第二个字为*
-showInput.addEventListener("blur", function(){
-    let name = this.value.trim();
-    if(name.length >= 2){
-        let arr = Array.from(name);
-        arr[1] = "*";
-        this.value = arr.join("");
+// 2. 录入结束（失去焦点）：页面显示脱敏效果，只改视觉、不改真实值
+nameInput.addEventListener("blur", function() {
+    const fullName = this.dataset.realName || this.value;
+    if (fullName.length >= 2) {
+        const nameArr = Array.from(fullName);
+        nameArr[1] = "*";
+        this.value = nameArr.join("");
     }
 });
 
-// 点击输入框恢复完整名字方便修改
-showInput.addEventListener("focus", function(){
-    this.value = realInput.value;
+// 3. 点击输入框恢复完整姓名方便修改
+nameInput.addEventListener("focus", function() {
+    this.value = this.dataset.realName || this.value;
+    this.setSelectionRange(this.value.length, this.value.length);
 });
 </script>
