@@ -268,7 +268,7 @@
             <label><input type="radio" name="partnerTest" value="阴性"> 阴性</label>
             <label><input type="radio" name="partnerTest" value="阳性"> 阳性</label>
         </div>
-        <input type="text" name="partnerTestDate" maxlength="16" placeholder="填写检测年月">
+        <input type="text" name="partnerTestDate" maxlength="30" placeholder="填写检查日期及卡片编号，用分号隔开">
     </div>
     <div class="row">
         <label>近1年内的性伴数量：</label>
@@ -603,9 +603,13 @@
     <label><input type="checkbox" name="symptomList" value="反复发生的细菌性肺炎"> 反复发生的细菌性肺炎</label>
     <label><input type="checkbox" name="symptomList" value="皮肤粘膜或内脏的Kaposi肉瘤"> 皮肤粘膜或内脏的Kaposi肉瘤</label>
     <label><input type="checkbox" name="symptomList" value="淋巴瘤"> 淋巴瘤</label>
-    <label><input type="checkbox" name="symptomList" value="活动性结核病或非结核分枝杆菌病"> 活动性结核病或非结核分枝杆菌病</label>
-    <label><input type="checkbox" name="symptomList" value="反复发作的疱疹病毒感染"> 反复发作的疱疹病毒感染</label>
     <label><input type="checkbox" name="symptomList" value="中青年痴呆症"> 中青年痴呆症</label>
+    <label><input type="checkbox" name="symptomList" value="反复发作的疱疹病毒感染"> 反复发作的疱疹病毒感染</label>
+    <label><input type="checkbox" name="symptomList" value="活动性结核病或非结核分枝杆菌病"> 活动性结核病或非结核分枝杆菌病</label>
+    <label><input type="checkbox" name="symptomList" value="咳嗽/咳痰≥2W"> 咳嗽/咳痰≥2W</label>
+    <label><input type="checkbox" name="symptomList" value="反复痰中带血"> 反复痰中带血</label>
+    <label><input type="checkbox" name="symptomList" value="经常容易疲劳或呼吸短促"> 经常容易疲劳或呼吸短促</label>
+    <label><input type="checkbox" name="symptomList" value="夜间经常出汗"> 夜间经常出汗</label>
     <label><input type="checkbox" name="symptomList" value="未有上述症"> 未有上述症</label>
     <label><input type="checkbox" name="symptomList" value="其他"> 其他</label>
     <input type="text" name="symptomOther" maxlength="10" placeholder="请注明">
@@ -763,17 +767,16 @@
         </select>
 
         <label>居住地：</label>
-        <input type="text" name="partnerAddr" maxlength="10">
+<input type="text" name="partnerAddr" maxlength="10">
 
-        <label>暴露地：</label>
-        <input type="text" name="partnerExposePlace" maxlength="10">
-    </div>
-    <div class="row">
-        <label>末次高危行为时间：</label>
-        <input type="text" name="partnerLastRiskTime" maxlength="6" placeholder="*年*月">
-        <label>备注：</label> 
-        <input type="text" name="surveyRemark" maxlength="30">
-    </div>
+<label>暴露地：</label>
+<input type="text" name="partnerExposePlace" maxlength="10">
+</div>
+<div class="row">
+    <label>末次高危行为时间：</label>
+    <input type="text" name="partnerLastRiskTime" maxlength="6" placeholder="*年*月">
+    <label>备注：</label> 
+    <input type="text" name="surveyRemark" maxlength="30" placeholder="注明筛查时间及筛查结果；联系方式">
 </div>
 
    <h2>8 其他高危行为接触者</h2>
